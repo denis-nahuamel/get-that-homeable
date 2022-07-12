@@ -14,8 +14,8 @@ function App() {
         {/* <PropertyForm /> */}
         {/* <SignUpForm /> */}
         {/* <LoginForm /> */}
-        <Header />
-        {/* <LoginPage /> */}
+        {/* <Header /> */}
+        <LoginPage />
         {/* <HomePage /> */}
     </div>
   );
