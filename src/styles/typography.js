@@ -75,6 +75,14 @@ export const montW500S20 = `
 
     color: #373737;
 `
+export const montW400S15 = `
+    ${Montserrat};
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 28px;
+    letter-spacing: 0.15px;
+    color: #373737;
+`
 export const montW400S24 = `
     ${Montserrat};
     font-weight: 400;

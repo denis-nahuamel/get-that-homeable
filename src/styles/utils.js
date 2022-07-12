@@ -26,6 +26,11 @@ export const contColumn = `
     display: flex;
     flex-direction: column;
 `
+export const contColumnM16Start = `
+    ${contColumn};
+    margin: 16px;
+    align-items: flex-start;
+`
 export const contColumnStart = `
     ${contColumn};
     align-items: flex-start;
