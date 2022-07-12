@@ -7,10 +7,10 @@ const InputComponent = ({labelText,idInput, placeholder, type,width }) => {
         <div css={css`${labelInputCont}`}>
                 <label css={css`${labelForm}`}>{labelText}</label>
                 <input css={css`${inputForm}; width: ${width?width:'90%' };`}
-                 type={type} 
-                 id={idInput} 
-                 name = {idInput} 
-                 placeholder={placeholder}/>
+                    type={type} 
+                    id={idInput} 
+                    name = {idInput} 
+                    placeholder={placeholder}/>
         </div>
     )
 }
