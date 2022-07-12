@@ -1,4 +1,15 @@
-
+export const  backgrondModal = `
+    background: white;
+    border-radius: 20px;
+`
+export const background = `
+    background: rgba(97, 97, 97, 0.25);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0
+`
 export const contStart = `
     display: flex;
     justify-content: flex-start;

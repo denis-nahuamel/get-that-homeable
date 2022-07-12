@@ -1,5 +1,8 @@
-import { contCenterCenter, contColumn, contColumnStart, contRowCenter, contRowGap } from "./utils"
+import { backgrondModal, background, contCenterCenter, contColumn, contColumnStart, contRowCenter, contRowGap } from "./utils"
 
+export const backgroundLogin = `
+    ${backgrondModal};
+`
 export const inputBasic = `
 padding: 8px;
 gap: 8px;

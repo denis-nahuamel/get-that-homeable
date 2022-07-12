@@ -3,6 +3,9 @@ import './App.css';
 import PropertyForm from './components/property-form';
 import SignUpForm from './components/sign-up-form';
 import LoginForm from './components/login-form';
+import LoginPage from './pages/login-page';
+import HomePage from './pages/home-page';
+import Header from './components/header';
 
 function App() {
   return (
@@ -10,7 +13,10 @@ function App() {
      <h1>homeable</h1>
         {/* <PropertyForm /> */}
         {/* <SignUpForm /> */}
-        <LoginForm />
+        {/* <LoginForm /> */}
+        <Header />
+        {/* <LoginPage /> */}
+        {/* <HomePage /> */}
     </div>
   );
 }
