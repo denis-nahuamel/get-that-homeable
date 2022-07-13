@@ -105,6 +105,6 @@ export const contGap = `
 
 export const line = `
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #BF5F82;
     opacity: 0.5;
 `
