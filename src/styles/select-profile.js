@@ -8,11 +8,14 @@ export const backgroundSelect = `
     top: 0;
     left: 0
 `
+export const cardWthPadding = `
+cursor: pointer;
+background: #FFFFFF;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+`
 export const card = `
-    cursor: pointer;
-    background: #FFFFFF;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    ${cardWthPadding}
     padding: 16px;
 `
 export const mainSelectContainer = `

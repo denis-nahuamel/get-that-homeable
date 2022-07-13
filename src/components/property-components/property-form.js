@@ -11,6 +11,7 @@ import { theme } from "./themes";
 import { PetAllowed, RentSale } from "./rent-sale.component";
 import {InputComponent, SelectComponent} from "./input-component";
 import { addProperty } from "../services/property-service";
+import SearchLocationInput from "./location/search-location-input";
 const PropertyForm = () => {
     const [rentSale, setRentSale] = useState('rent');
     const handleRentSale= (_event,value)=>{
@@ -21,19 +22,21 @@ const PropertyForm = () => {
         let values = event.target.elements;
         event.preventDefault();
         const send = {
-            address: values.address.value,
-            montly: values.montlyRent.value,
-            maintanance: values.maintanance.value, 
-            property_type: values.apartment.value,// corregir
+            operation: rentSale==="rent"?"rent": "sale",
+            address: values.address.value,//
+            // montly: rentSale==="rent"? values.montlyRent.value: null,
+            maintanance:rentSale==="rent"? values.maintanance.value:null, 
+            pets_allowed:rentSale==="rent"? values.pets.checked:null,
+            price: values.price.value,
+            property_type: values.apartment.value==="on"?"apartment": "house",// corregir
             bedrooms: values.bedrooms.value,
             bathrooms:values.bathrooms.value,
             area: values.area.value,
-            pets_allowed: values.pets.checked,
-            about: values.about.value,
+            about: values.about.value,//
 
         }
         console.log("han", send)
-        addProperty(send).then(response => console.log(response))
+         addProperty(send).then(response => console.log(response))
     }
     return (
         <div css={css`${contColumnStart}`}>
@@ -58,10 +61,10 @@ const PropertyForm = () => {
                         </ToggleButtonGroup>
                     </ThemeProvider>
                 </div>
-
-                <InputComponent labelText={"ADDRESS"} 
+                <SearchLocationInput onChange={() => null} />
+                {/* <InputComponent labelText={"ADDRESS"} 
                         idInput={"address"} 
-                        placeholder={"start typing to autocomplete"} width={"600px"}/>
+                        placeholder={"start typing to autocomplete"} width={"600px"}/> */}
                 
                 <RentSale value={rentSale}/>
                 <div css={css`${labelInputCont}`}>
