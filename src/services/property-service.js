@@ -1,5 +1,5 @@
 import apiFetch from "./api-fetch"
 
 export const addProperty = (property) => {
-    return apiFetch("/add-property", {body: property}).then(response => {return response})
+    return apiFetch("/properties", {body: property}).then(response => {return response})
  }

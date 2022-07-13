@@ -13,14 +13,14 @@ function App() {
   return (
     <div className="App">
      
-        {/* <PropertyForm /> */}
+        <PropertyForm />
         {/* <SelectProfile /> */}
         {/* <SignUpForm /> */}
         {/* <LoginForm /> */}
         {/* <Header /> */}
         {/* <LoginPage /> */}
         {/* <HomePage /> */}
-        <PropertyData />
+        {/* <PropertyData /> */}
     </div>
   );
 }
