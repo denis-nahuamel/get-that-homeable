@@ -10,11 +10,11 @@ const DataContainer = (data) =>{
     return (
         <>
         <div css={css`${line}`}></div>
-        <div css={css`${contRow}; gap:36px`}>
+        <div css={css`${contRow}; gap:6px`}>
             
              <ThemeProvider theme={theme}>
                 <div css={css`${contRowCenter}`}>
-                    <BedOutlinedIcon color="gray" />
+                    <BedOutlinedIcon color="gray" fontSize="small" />
                     <p>{bedrooms} bedrooms</p>
                 </div>
                 <div css={css`${contRowCenter}`}>

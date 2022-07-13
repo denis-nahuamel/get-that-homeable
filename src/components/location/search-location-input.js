@@ -39,6 +39,7 @@ async function handlePlaceSelect(updateQuery) {
   const addressObject = autoComplete.getPlace();
   const query = addressObject.formatted_address;
   updateQuery(query);
+  console.log(addressObject.geometry.location.lat())
   console.log(addressObject);
 }
 
@@ -73,13 +74,6 @@ function SearchLocationInput() {
     
   );
 }
-{/* <div className="search-location-input">
-      <input
-        ref={autoCompleteRef}
-        onChange={event => setQuery(event.target.value)}
-        placeholder="Enter a City"
-        value={query}
-      />
-    </div> */}
+
 
 export default SearchLocationInput;

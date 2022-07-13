@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css, ThemeProvider } from "@emotion/react";
-import { sendButton } from "../styles/form";
-import { contactCard } from "../styles/property-data";
-import { card } from "../styles/select-profile";
+import { sendButton } from "../../styles/form";
+import { contactCard } from "../../styles/property-data";
+import { card } from "../../styles/select-profile";
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import { contColumn, contRow, contRowBetween, contRowCenter, contRowCenterGap, contStart } from "../styles/utils";
-import Slider from "./slider";
-import { montW400S15, montW400S24, montW400S36 } from "../styles/typography";
-import DataContainer from "./property-containers/data-container";
+import { contColumn, contRow, contRowBetween, contRowCenter, contRowCenterGap, contStart } from "../../styles/utils";
+import Slider from "../slider";
+import { montW400S15, montW400S24, montW400S36 } from "../../styles/typography";
+import DataContainer from "./data-container";
 
 export const PropertyData = ({property}) => {
     const direction = "Francisco de Paula Ugarriza 27";

@@ -24,10 +24,10 @@ const PropertyForm = () => {
         const send = {
             operation: rentSale==="rent"?"rent": "sale",
             address: values.address.value,//
-            montly: rentSale==="rent"? values.montlyRent.value: null,
+            // montly: rentSale==="rent"? values.montlyRent.value: null,
             maintanance:rentSale==="rent"? values.maintanance.value:null, 
             pets_allowed:rentSale==="rent"? values.pets.checked:null,
-            price: rentSale==="rent"?null: values.price.value,
+            price: values.price.value,
             property_type: values.apartment.value==="on"?"apartment": "house",// corregir
             bedrooms: values.bedrooms.value,
             bathrooms:values.bathrooms.value,
