@@ -67,6 +67,10 @@ export const contRowAround = `
     background: #F6F6F9;
     justify-content: space-around;
 `
+export const contRowSpaceAround = `
+    ${contRow};
+    justify-content: space-around;
+`
 export const contRowAroundFullWidth = `
     ${contRowAround};
     width: 100%
