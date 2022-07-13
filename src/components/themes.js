@@ -5,5 +5,8 @@ export const theme = createTheme({
       pink: {
         main: '#F48FB1',
       },
+      gray: {
+        main: '#616161'
+      }
     },
   });
