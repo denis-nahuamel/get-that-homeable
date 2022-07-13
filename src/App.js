@@ -6,16 +6,18 @@ import LoginForm from './components/login-form';
 import LoginPage from './pages/login-page';
 import HomePage from './pages/home-page';
 import Header from './components/header';
+import SelectProfile from './pages/select-profile-page';
 
 function App() {
   return (
     <div className="App">
-     <h1>homeable</h1>
+     
         {/* <PropertyForm /> */}
+        <SelectProfile />
         {/* <SignUpForm /> */}
         {/* <LoginForm /> */}
         {/* <Header /> */}
-        <LoginPage />
+        {/* <LoginPage /> */}
         {/* <HomePage /> */}
     </div>
   );

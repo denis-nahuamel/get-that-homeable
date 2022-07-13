@@ -84,6 +84,10 @@ export const contRowCenter = `
     ${contRow}
     align-items: center;
 `
+export const contRowCenterCenter = `
+    ${contRowCenter}
+    justify-content: center;
+`
 export const contRowCenterGap = `
     ${contRowCenter};
     gap:20px;
