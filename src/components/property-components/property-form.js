@@ -1,17 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css, ThemeProvider } from "@emotion/react";
 import { alpha, styled } from '@mui/material/styles';
-import { anotherInput, checkbox, input, inputBasic, labelCheck, labelForm, labelInputCont, labelOptions, select, sendButton, textArea, thumbImage, thumbImages, toggle } from "../styles/form";
-import { montW500S20 } from "../styles/typography";
+import { anotherInput, checkbox, inputBasic, 
+    labelForm, labelInputCont, labelOptions, sendButton, textArea, thumbImage, thumbImages, toggle } from "../../styles/form";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import {  contColumn, contColumnStart, contRowCenter, } from "../styles/utils";
+import {  contColumn, contColumnStart, contRowCenter, } from "../../styles/utils";
 import { useState } from "react";
-import { theme } from "./themes";
-import { PetAllowed, RentSale } from "./rent-sale.component";
-import {InputComponent, SelectComponent} from "./input-component";
-import { addProperty } from "../services/property-service";
-import SearchLocationInput from "./location/search-location-input";
+import { theme } from "../themes";
+import { PetAllowed, RentSale } from "../rent-sale.component";
+import {InputComponent, SelectComponent} from "../input-component";
+import { addProperty } from "../../services/property-service";
+import SearchLocationInput from "../location/search-location-input";
+import { montW500S20 } from "../../styles/typography";
 const PropertyForm = () => {
     const [rentSale, setRentSale] = useState('rent');
     const handleRentSale= (_event,value)=>{
