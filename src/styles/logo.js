@@ -2,7 +2,7 @@ import { contRowAroundFullWidth } from "./utils"
 <link href="http://fonts.cdnfonts.com/css/montserrat" rel="stylesheet"></link>
 export const Nav = `
 gap:8px;
-position:fixed;
+position:relative;
 top:0;
 align-items: center;
 display: flex;
@@ -51,6 +51,7 @@ border-radius: 16px;
     `
 
 export const join = `
+cursor: pointer;
 background: white;
 gap: 8px;
 margin: 16px;

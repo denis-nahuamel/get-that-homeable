@@ -10,6 +10,8 @@ import PropertyData from './components/property-components/property-data';
 import  PropertyCard  from './components/property-components/property-card';
 import PropertiesPage from './pages/properties-page';
 import Footer from './components/footer';
+import { Route, Routes } from 'react-router-dom';
+import SignUpPage from './pages/sign-up-page';
 
 function App() {
   return (
@@ -24,7 +26,15 @@ function App() {
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
         <Header />
-          <PropertiesPage />
+        <Routes>
+          <Route path="/">
+            <Route index element={<HomePage/>}/>
+            <Route path="list-properties" element = {<PropertiesPage />}/>
+            <Route path="login" element={<LoginPage />}/>
+            <Route path="select-profile/sign-up" element = {<SignUpPage/>}/>
+            <Route path="select-profile" element = {<SelectProfile/>}/>
+          </Route>
+        </Routes>
         <Footer />
         {/* <PropertyCard /> */}
     </div>

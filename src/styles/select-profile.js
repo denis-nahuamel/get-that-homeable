@@ -22,6 +22,11 @@ export const mainSelectContainer = `
     ${backgroundSelect}; 
     ${contColumn};
 `
+export const mainSignUpContainer = `
+    ${backgroundSelect}; 
+    ${contColumn};
+    align-items:center;
+`
 export const cardsContainer = `
 ${contRow};
     justify-content: space-evenly;
