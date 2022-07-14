@@ -2,7 +2,17 @@ import { useState } from "react";
 
 const FilePage = () => {
 	const [photos, setPhotos] = useState(null);
+	function handleChange(event) {
+		setPhotos(event.target.files)
+	}
 
+	function ImgPreview({photos}) {
+		return (
+			photos? Array.from(photos).map(function (photo, idx) {
+        return <img key={idx} width={250} src={URL.createObjectURL(photo)} alt={photo.name} />;
+    	}) : ""
+		)
+	}
 	function handleSubmit(event) {
     event.preventDefault();
 
@@ -30,13 +40,16 @@ const FilePage = () => {
 		.then((result) => console.log(result))
     .catch(error=>console.log(error));
 	}
+
 	return (
 		<div>
 		<form onSubmit={handleSubmit}>
-			<input name="photo" multiple type="file" accept="image/*" onChange={(e)=>setPhotos(e.target.files)}/>
+			<input name="photo" multiple type="file" accept="image/*" onChange={handleChange}/>
 			
 			<button type="submit">Submit</button>
 		</form>
+		<ImgPreview photos={photos}/>
+	
 	</div>
 	
 	)

@@ -24,9 +24,10 @@ function App() {
         {/* <LoginForm /> */}
         {/* <Header /> */}
         {/* <LoginPage /> */}
+        <FilePage />
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
-        <Header />
+        {/* <Header />
         <Routes>
           <Route path="/">
             <Route index element={<HomePage/>}/>
@@ -36,7 +37,7 @@ function App() {
             <Route path="select-profile" element = {<SelectProfile/>}/>
           </Route>
         </Routes>
-        <Footer />
+        <Footer /> */}
         {/* <PropertyCard /> */}
     </div>
   );
