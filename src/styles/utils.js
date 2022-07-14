@@ -10,6 +10,12 @@ export const background = `
     top: 0;
     left: 0
 `
+export const backgroundLogin = `
+    ${background};
+    display: flex;
+    justify-content: center;
+    align-items: center
+`
 export const contStart = `
     display: flex;
     justify-content: flex-start;
