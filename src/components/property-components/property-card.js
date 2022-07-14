@@ -11,7 +11,7 @@ import { contRow, contRowAround, contRowBetween, contRowCenter, contRowSpaceArou
 import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 import DataContainer from "./data-container";
 import { theme } from "../themes";
-import area from "../../images/icons/bx-area.png"
+import areaImg from "../../images/icons/bx-area.png"
 export const PropertyCard = ({property}) => {
     const {price, property_type, address, bedrooms, bathrooms, area, pets, about }= property;
     return (
@@ -44,7 +44,7 @@ export const PropertyCard = ({property}) => {
                         <p>{bathrooms} </p>
                     </div>
                     <div css={css`${iconsGap}`}>
-                        <img  src={area} alt="area" width="22"/>
+                        <img  src={areaImg} alt="area" width="22"/>
                         <p>{area} m2</p>
                     </div>
                     <div css={css`${iconsGap}`}>

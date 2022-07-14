@@ -9,6 +9,7 @@ import SelectProfile from './pages/select-profile-page';
 import PropertyData from './components/property-components/property-data';
 import  PropertyCard  from './components/property-components/property-card';
 import PropertiesPage from './pages/properties-page';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
         {/* <LoginPage /> */}
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
-        <PropertiesPage />
+        <Header />
+          <PropertiesPage />
+        <Footer />
         {/* <PropertyCard /> */}
     </div>
   );
