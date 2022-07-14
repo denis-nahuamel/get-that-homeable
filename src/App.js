@@ -25,7 +25,7 @@ function App() {
         {/* <LoginForm /> */}
         {/* <Header /> */}
         {/* <LoginPage /> */}
-        <FilePage />
+        {/* <FilePage /> */}
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
         {/* <Routes >
