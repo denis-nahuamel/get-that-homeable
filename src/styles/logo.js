@@ -42,7 +42,7 @@ gap: 8px;
 margin: 16px;
 width: 90%;
 height: 40px;
-color: black;
+color: white;
 display: flex;
 align-items: center;
 justify-content: center;

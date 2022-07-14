@@ -9,6 +9,7 @@ import { join, Logo, Nav, Input, pluspeople } from "../styles/logo";
 import { useAuth } from "../context/auth-context";
 import Visitor from "./header-users/visitor";
 import Landlord from "./header-users/landlord";
+import HomeSeeker from "./header-users/homeseeker";
 const Header = () => {
   const navigate= useNavigate();
   const {user} = useAuth();
@@ -22,7 +23,8 @@ const Header = () => {
           <img src={image} alt="take" />
           <input css={css` ${Input} `} placeholder="FIND A HOME" />
         </div>
-        {user===null?<Visitor />:(user.user_type==="landlord"?<Landlord />:<p>homeseeker</p>)}
+        {user===null?<Visitor />:(
+          user.user_type==="landlord"?<Landlord />:<HomeSeeker />)}
       </div>
     </nav>
   );

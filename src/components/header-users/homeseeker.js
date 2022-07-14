@@ -4,9 +4,7 @@ import { join, pluspeople } from "../../styles/logo";
 import { contRowAround } from "../../styles/utils";
 import {useNavigate} from "react-router-dom";
 import addpeople from "../../images/AddPeople.png";
-import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
-import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
-const Landlord = ()=> {
+const HomeSeeker = () => {
     const handleLogout = () => {
 
     }
@@ -19,22 +17,19 @@ const Landlord = ()=> {
     return (
         <div css={css` ${contRowAround}; display: flex; `} >
             <button css={css` ${join} `} onClick={handleLogout} >
-                {/* <img src={addpeople} alt="" /> */}
-                <PersonAddAltOutlinedIcon />
+                <img src={addpeople} alt="" />
                 LOGOUT
             </button>
             <button css={css` ${pluspeople} `} onClick={handleSavedProperties} >
-                {/* <img src={addpeople} alt="" /> */}
-                <HouseOutlinedIcon  />
-                MY PROPERTIES
+                <img src={addpeople} alt="" />
+                SAVED PROPERTIES
             </button>
             <button css={css` ${pluspeople} `} onClick={handleProfile} >
-                {/* <img src={addpeople} alt="" /> */}
-                <PersonAddAltOutlinedIcon />
+                <img src={addpeople} alt="" />
                 PROFILE
             </button>
         </div>
 
     )
 }
-export default Landlord;
+export default HomeSeeker;
