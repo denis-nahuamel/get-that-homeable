@@ -13,10 +13,7 @@ const Header = () => {
   const navigate= useNavigate();
   const {user} = useAuth();
   console.log("user",user)
-  const handleSignUp = (event)=>{
-    event.preventDefault();
-    navigate("select-profile")
-   }
+  
   return (
     <nav css={css`${Nav}`}>
       <img css={css`${Logo}`}src={logo}alt=""/>
@@ -25,7 +22,7 @@ const Header = () => {
           <img src={image} alt="take" />
           <input css={css` ${Input} `} placeholder="FIND A HOME" />
         </div>
-        {user===null?<Visitor handleSignUp={handleSignUp} />:(user.user_type==="landlord"?<Landlord />:<p>homeseeker</p>)}
+        {user===null?<Visitor />:(user.user_type==="landlord"?<Landlord />:<p>homeseeker</p>)}
       </div>
     </nav>
   );

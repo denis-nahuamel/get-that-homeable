@@ -25,12 +25,15 @@ function App() {
         {/* <LoginPage /> */}
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
+        {/* <Routes >
+          <Route path="/login" element={<LoginPage />}/>
+        </Routes> */}
         <Header />
         <Routes>
           <Route path="/">
             <Route index element={<HomePage/>}/>
-            <Route path="list-properties" element = {<PropertiesPage />}/>
             <Route path="login" element={<LoginPage />}/>
+            <Route path="list-properties" element = {<PropertiesPage />}/>
             <Route path="select-profile/sign-up" element = {<SignUpPage/>}/>
             <Route path="select-profile" element = {<SelectProfile/>}/>
           </Route>
