@@ -5,6 +5,7 @@ import SignUpForm from './components/sign-up-form';
 import LoginForm from './components/login-form';
 import LoginPage from './pages/login-page';
 import HomePage from './pages/home-page';
+import FilePage from './pages/file-page';
 import Header from './components/header';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         {/* <SignUpForm /> */}
         {/* <LoginForm /> */}
         {/* <Header /> */}
-        <LoginPage />
+        {/* <LoginPage /> */}
+        <FilePage />
         {/* <HomePage /> */}
     </div>
   );
