@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = (props) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [userType, setUserType] = useState("");
     useEffect(() => {
       getUser()
       .then((response)=> {
@@ -16,6 +17,9 @@ export const AuthProvider = (props) => {
         setLoading(false)
         ; console.log(e)})
     }, [])
+    const userTypeAuth = (user)=> {
+        setUserType(user);
+    }
     const loginAuth = (credentials) => {
         return login(credentials).then(user =>{
             setUser(user)
@@ -27,10 +31,12 @@ export const AuthProvider = (props) => {
         })
     }
     const signupAuth = (user) => {
-        return signupUser(user).then(response => console.log("response", response))
+        return signupUser(user).then(response => setUser(response))
     }
     const value = {
         user,
+        userType,
+        userTypeAuth,
         loginAuth,
         logoutAuth,
         signupAuth

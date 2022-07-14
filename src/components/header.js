@@ -1,13 +1,33 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { contColumn, contRow, contRowAround } from "../styles/utils";
+import image from "../images/Vector.png";
+import logo from "../images/Logo.png";
+import {useNavigate} from "react-router-dom";
+import addpeople from "../images/AddPeople.png";
+import { contRowAround } from "../styles/utils";
+import { join, Logo, Nav, Input, pluspeople } from "../styles/logo";
+import { useAuth } from "../context/auth-context";
+import Visitor from "./header-users/visitor";
+import Landlord from "./header-users/landlord";
 const Header = () => {
-    return (
-        <div css={css`${contRowAround}; gap:8px;`}>
-            <div>hellasdfadsfadfadfadfadfasfsao1</div>
-            <div>helll2</div>
-            <div>helll2</div>
+  const navigate= useNavigate();
+  const {user} = useAuth();
+  console.log("user",user)
+  const handleSignUp = (event)=>{
+    event.preventDefault();
+    navigate("select-profile")
+   }
+  return (
+    <nav css={css`${Nav}`}>
+      <img css={css`${Logo}`}src={logo}alt=""/>
+      <div css={css` display: flex; `} >
+        <div css={css` ${contRowAround}; display: flex; align-items: center; `} >
+          <img src={image} alt="take" />
+          <input css={css` ${Input} `} placeholder="FIND A HOME" />
         </div>
-    )
-}
+        {user===null?<Visitor handleSignUp={handleSignUp} />:(user.user_type==="landlord"?<Landlord />:<p>homeseeker</p>)}
+      </div>
+    </nav>
+  );
+};
 export default Header;
