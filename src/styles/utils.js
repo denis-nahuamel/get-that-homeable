@@ -67,6 +67,10 @@ export const contRowAround = `
     background: #F6F6F9;
     justify-content: space-around;
 `
+export const contRowSpaceAround = `
+    ${contRow};
+    justify-content: space-around;
+`
 export const contRowAroundFullWidth = `
     ${contRowAround};
     width: 100%
@@ -83,6 +87,10 @@ export const contColumnCenter = `
 export const contRowCenter = `
     ${contRow}
     align-items: center;
+`
+export const contRowCenterCenter = `
+    ${contRowCenter}
+    justify-content: center;
 `
 export const contRowCenterGap = `
     ${contRowCenter};
@@ -101,6 +109,6 @@ export const contGap = `
 
 export const line = `
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #BF5F82;
     opacity: 0.5;
 `

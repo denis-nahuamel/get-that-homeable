@@ -109,7 +109,14 @@ border-radius: 16px;
 `
 export const signUpContainer = `
     ${contColumn};
+    width: 380px;
+    background: white;
     margin: 0 200px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+`
+export const toggle = `
+    width: 50px;
+    height: 36px;
+    
 `
