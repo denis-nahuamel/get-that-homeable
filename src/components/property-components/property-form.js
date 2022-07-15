@@ -15,8 +15,15 @@ import SearchLocationInput from "../location/search-location-input";
 import { montW500S20 } from "../../styles/typography";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
 
 function PropertyForm() {
+    const ref = useRef();
+
+    const reset = () => {
+        ref.current.value = "";
+        setPhotos(null)
+    };
     const navigate = useNavigate();
 
     const [rentSale, setRentSale] = useState('rent');
@@ -44,6 +51,10 @@ function PropertyForm() {
         justify-content: center;
         gap: 1rem;
     `;
+    // function removePhotos(event) {
+    //     setPhotos(null)
+        
+    // }
 
     const [checked, setChecked] = useState({
         apartment: false, 
@@ -205,7 +216,15 @@ function PropertyForm() {
                 </div>
                 <div css={css`${labelInputCont}`}>
                     <label css={css`${labelForm}`}>Upload as many photos as you wish</label>
-                    <input css={css`${inputBasic}`} name="photo" multiple type="file" accept="image/*" onChange={handleFileChange}/>
+                    <input css={css`${inputBasic}`} 
+                    ref={ref} 
+                    name="photo" 
+                    multiple 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleFileChange}
+                    />
+                    <button type="button" onClick={reset}>Remove uploaded photos</button>
                     {/* <input css={css`${inputBasic}`} type="file"/> */}
                 </div>
                 {/* <div>
@@ -215,7 +234,9 @@ function PropertyForm() {
                     <button css={css`${sendButton}`} type="submit">PUBLISH PROPERTY LISTING</button>
                 </div>
             </form>
-            
+            {/* <button onClick={reset}>reset</button> */}
+
+            {/* <button onClick={removePhotos}>Remove photos</button> */}
             <div css={css`${thumbImages}`}>
                     <ImgPreview photos={photos}/>
             </div>
