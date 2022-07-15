@@ -34,9 +34,12 @@ const PropertiesPage = ()=> {
             console.log(response.info)
         })
     },[filterParams])
+    const handleFilterParams = (filters) => {
+            setFilterParams(filters)
+    }
     return (
         <>
-            <FilterProperties />
+            <FilterProperties onFilterParams= {handleFilterParams}/>
             <ListProperties properties = {properties} />
         </>)
 }

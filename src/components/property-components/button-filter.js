@@ -4,7 +4,7 @@ import { useState } from "react";
 import { pinkButton, sendButton } from "../../styles/form";
 import { buttonFilter, filterOptions } from "../../styles/property-data";
 import ReturnContent from "./options-content";
-const ButtonFilter = ({text, value}) => {
+const ButtonFilter = ({text, value, onFilterParams}) => {
     const [hideOptions, setHideOptions] = useState("none")
     const handleVisibility = (event) => {
         event.preventDefault();
@@ -14,7 +14,7 @@ const ButtonFilter = ({text, value}) => {
         <div css={css`display:flex; flex-direction:column   `}>
             <button css={css`${buttonFilter}`} onClick={handleVisibility}>{text}</button>
             {hideOptions=== "block"?
-            <div css={css`${filterOptions}`}><ReturnContent  type={value}/></div>:null}
+            <div css={css`${filterOptions}`}><ReturnContent  type={value} onFilterParams={onFilterParams}/></div>:null}
         </div>
     )
 }

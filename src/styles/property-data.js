@@ -36,6 +36,7 @@ export const buttonFilter = `
 export const filterOptions = `
     border-radius: 8px;
     background: white;
+    padding: 8px;
     position: relative;
     transform: translateY(0);
     transition: 200ms 100ms opacity, 300ms 100ms transform;
