@@ -20,7 +20,7 @@ const PropertiesPage = ()=> {
         min_area: null, 
         max_area: null,
         pets: null, 
-        page: 2,
+        page: 1,
         bedrooms: null, 
         bathrooms: null, 
         operation_rent: null, 
