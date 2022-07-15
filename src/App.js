@@ -35,10 +35,10 @@ function App() {
 
         <Routes>
           <Route path="/">
-            {/* <Route index element={<HomePage/>}/> */}
-            {/* <Route path="list-properties" element = {<PropertiesPage />}/> */}
+            <Route index element={<HomePage/>}/> 
+             <Route path="list-properties" element = {<PropertiesPage />}/>
             <Route path="login" element={<LoginPage />}/>
-            <Route index element = {<PropertiesPage />}/>
+            {/* <Route index element = {<PropertiesPage />}/> */}
             <Route path="select-profile/sign-up" element = {<SignUpPage/>}/>
             <Route path="select-profile" element = {<SelectProfile/>}/>
             <Route path = "create-property" element = {<PropertyForm />} />

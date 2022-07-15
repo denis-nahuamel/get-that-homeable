@@ -6,10 +6,12 @@ import {useNavigate} from "react-router-dom";
 import addpeople from "../../images/AddPeople.png";
 import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import { useAuth } from "../../context/auth-context";
 const Landlord = ()=> {
     const navigate = useNavigate();
+    const {logoutAuth} = useAuth();
     const handleLogout = () => {
-
+        logoutAuth().then(response => console.log(response))
     }
     const handleSavedProperties = () => {
 
