@@ -10,8 +10,13 @@ import { contRow } from "../styles/utils";
 
 const PropertiesPage = ()=> {
     const [properties, setProperties] = useState([])
+    const [info, setInfo] = useState({})
+
     useEffect(()=>{
-        getProperties().then(response => setProperties(response))
+        getProperties().then(response => {
+            setProperties(response.results)
+            setInfo(response.info)
+        })
     },[])
     return (
         <>
