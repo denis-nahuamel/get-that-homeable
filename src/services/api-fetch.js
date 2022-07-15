@@ -2,7 +2,7 @@ import { tokenKey, BASE_URI } from "../config";
 
 export default async function apiFetch(
   endpoint,
-  { method, headers, body } = {}
+  { method, headers, body, property_creator = false } = {}
 ) {
    const token = sessionStorage.getItem(tokenKey);
   //const token = "G1xBV2tpHQCCn63y13upccWh";
@@ -14,17 +14,23 @@ export default async function apiFetch(
     };
   }
 
-  if (body) {
+  if (body && (property_creator === false)) {
     headers = {
       "Content-Type": "application/json",
       ...headers,
     };
-  }
+
+    body = body ? JSON.stringify(body) : null
+  } else if (body && (property_creator === true)) {
+    headers = {
+      ...headers,
+    };
+  } 
 
   const config = {
     method: method || (body ? "POST" : "GET"),
     headers,
-    body: body ? JSON.stringify(body) : null,
+    body: body
   };
 
   const response = await fetch(BASE_URI + endpoint, config);

@@ -75,8 +75,9 @@ export const thumbImages = `
     margin: 8px; 
     display: flex;
     align-items: center;
-    width: 600px;
-    height: 136px;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     left: 0px;
     top: 824px;
 
@@ -86,9 +87,8 @@ export const thumbImages = `
 `
 export const thumbImage = `
 ${contCenterCenter}
-width: 120px;
-height: 120px;
-margin-left: 8px;
+width: 200px;
+margin: 0.5rem;
 /* BackgroundLight */
 
 background: #E1E2E1;
