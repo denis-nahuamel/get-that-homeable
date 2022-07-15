@@ -31,6 +31,34 @@ export const PriceContent = ({onFilterParams}) => {
         </div>
     )
 }
+export const PetsAreaContent = ({onFilterParams}) => {
+    console.log("pa", onFilterParams)
+    const handleFilterPetsArea = (event) => {
+        event.preventDefault();
+        let values= event.target.elements;
+        onFilterParams(filterParams => ({
+            ...filterParams,
+            pets: values.pets.checked, 
+            min_area: values.min_area.value, 
+            max_area: values.max_area.value, 
+        }))
+    }
+    return (
+        <div>
+            <form onSubmit={handleFilterPetsArea}>
+                <div>
+                    <input type="checkbox" id="pets" name="pets"/> Pets Allowed 
+                </div>
+                <div>
+                    <p>AREA IN M2</p>
+                    <input placeholder="min" id="min_area" name="min_area"/> - 
+                    <input placeholder="max" id="max_area" name="max_area"/>
+                </div>
+                <div><button type="submit">DONE</button></div>
+            </form>
+        </div>
+    )
+}
 export const PropertyContent = ({onFilterParams}) => {
     const handleFilterPrice = (event) => {
         event.preventDefault();
@@ -144,5 +172,6 @@ const ReturnContent = ({type, onFilterParams, params})=>{
     if(type==="price") return <PriceContent onFilterParams={onFilterParams} />
     if(type==="property_type") return <PropertyContent onFilterParams={onFilterParams}/>
     if(type==="beds_baths") return <BedsBathsContent onFilterParams={onFilterParams}/>
+    if(type==="more") return <PetsAreaContent onFilterParams={onFilterParams}/>
 }
 export default ReturnContent;
