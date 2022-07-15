@@ -8,13 +8,15 @@ import { contColumn, contRow } from "../../styles/utils";
 import { theme } from "../themes"
 
 export const PriceContent = ({onFilterParams}) => {
+    console.log("pa", onFilterParams)
     const handleFilterPrice = (event) => {
         event.preventDefault();
         let values= event.target.elements;
-        onFilterParams({
+        onFilterParams(filterParams => ({
+            ...filterParams,
             min_price: values.min_price.value, 
             max_price: values.max_price.value, 
-        })
+        }))
     }
     return (
         <div>
@@ -33,10 +35,11 @@ export const PropertyContent = ({onFilterParams}) => {
     const handleFilterPrice = (event) => {
         event.preventDefault();
         let values= event.target.elements;
-        onFilterParams({
+        onFilterParams(filterParams => ({
+            ...filterParams,
             property_type_apartment: values.apartment.checked===true?"apartment":null, 
             property_type_house: values.house.checked===true?"house":null
-        })
+        }))
     }
     return (
         <div>
@@ -56,16 +59,18 @@ export const BedsBathsContent = ({onFilterParams}) => {
     const [bed, setBed] = useState("0");
     const handleBed = (_event, value) => {
         setBed(value)
-        onFilterParams({
+        onFilterParams(filterParams => ({
+            ...filterParams,
             bedrooms: value 
-        })
+        }))
     }
     const [bath, setBath] = useState("0");
     const handleBath = (_event, value) => {
         setBath(value)
-        onFilterParams({
+        onFilterParams(filterParams => ({
+            ...filterParams,
             bathrooms: value 
-        })
+        }))
     }
     return (
         <div>
@@ -80,7 +85,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
                             onChange={handleBed}
                             >
                             <ToggleButton
-                            css={css`${toggle}`} value="0" aria-label="left aligned">
+                            css={css`${toggle}`} value="" aria-label="left aligned">
                                 Any
                             </ToggleButton>
                             <ToggleButton css={css`${toggle}`} value="1" aria-label="centered">
@@ -109,7 +114,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
                             onChange={handleBath}
                             >
                             <ToggleButton
-                            css={css`${toggle}`} value="0" aria-label="left aligned">
+                            css={css`${toggle}`} value="" aria-label="left aligned">
                                 Any
                             </ToggleButton>
                             <ToggleButton css={css`${toggle}`} value="1" aria-label="centered">
@@ -130,11 +135,12 @@ export const BedsBathsContent = ({onFilterParams}) => {
             <div>
         
             </div>
-            <div><button>DONE</button></div>
+            {/* <div><button>DONE</button></div> */}
         </div>
     )
 }
-const ReturnContent = ({type, onFilterParams})=>{
+const ReturnContent = ({type, onFilterParams, params})=>{
+    console.log("para", params)
     if(type==="price") return <PriceContent onFilterParams={onFilterParams} />
     if(type==="property_type") return <PropertyContent onFilterParams={onFilterParams}/>
     if(type==="beds_baths") return <BedsBathsContent onFilterParams={onFilterParams}/>

@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { filterButtons } from "../../styles/property-data";
 import { contRow, contRow8Gap} from "../../styles/utils";
 import ButtonFilter from "./button-filter";
+import MultipleSelect from "./multi-select";
 const FilterProperties = ({onFilterParams}) => {
     return (
         <div css = {css`${filterButtons}`}>
@@ -13,9 +14,8 @@ const FilterProperties = ({onFilterParams}) => {
                 <ButtonFilter text="BEDS & BATHS" value={"beds_baths"} onFilterParams={onFilterParams}/>  
                 <ButtonFilter text="MORE" value={"more"} onFilterParams={onFilterParams}/> 
             </div>
-            <div>
-                <button>Buying & Renting</button>
-            </div>
+            
+            <MultipleSelect />
         </div>
     )
 }

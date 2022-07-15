@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css, ThemeProvider } from "@emotion/react";
 import { useEffect, useState } from "react";
+import ButtonFilter from "../components/property-components/button-filter";
 import FilterProperties from "../components/property-components/filter-properties";
 import ListProperties from "../components/property-components/list-properties";
+import ReturnContent from "../components/property-components/options-content";
 import PropertyCard from "../components/property-components/property-card";
 import { getProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
@@ -39,7 +41,11 @@ const PropertiesPage = ()=> {
     }
     return (
         <>
-            <FilterProperties onFilterParams= {handleFilterParams}/>
+            <FilterProperties onFilterParams= {handleFilterParams}>
+                {/* <ButtonFilter>
+                    <ReturnContent onFilterParams= {handleFilterParams} params={filterParams} />
+                </ButtonFilter> */}
+            </FilterProperties>
             <ListProperties properties = {properties} />
         </>)
 }

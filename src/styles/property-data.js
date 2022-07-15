@@ -27,6 +27,7 @@ export const listProperties = `
 `
 export const filterButtons = `
     ${contRowSpaceAround};
+    align-items:center;
     margin: 40px; 0;
 `
 export const buttonFilter = `
