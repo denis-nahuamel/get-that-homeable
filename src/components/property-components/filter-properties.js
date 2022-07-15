@@ -15,7 +15,7 @@ const FilterProperties = ({onFilterParams}) => {
                 <ButtonFilter text="MORE" value={"more"} onFilterParams={onFilterParams}/> 
             </div>
             
-            <MultipleSelect />
+            <MultipleSelect onFilterParams={onFilterParams}/>
         </div>
     )
 }

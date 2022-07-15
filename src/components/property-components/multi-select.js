@@ -21,18 +21,23 @@ const MenuProps = {
 };
 
 const names = [
-  'Both',
   'Buying',
   'Renting'
 ];
 
-export default function MultipleSelect() {
+export default function MultipleSelect({onFilterParams}) {
   const [buyRent, setBuyRent] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
+    
+    onFilterParams(filterParams =>({
+        ...filterParams,
+        operation_rent: value.length ===2?"rent":(value.length ===1 && value[0] ==="Renting")?"rent":null, 
+        operation_sale: value.length ===2 ?"sale":(value.length ===1 && value[0] ==="Buying")?"sale":null 
+    }))
     setBuyRent(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
@@ -50,7 +55,7 @@ export default function MultipleSelect() {
             color="pink"
             value={buyRent}
             onChange={handleChange}
-            input={<OutlinedInput label="Tag" />}
+            input={<OutlinedInput label="Buying & Renting" />}
             renderValue={(selected) => selected.join(', ')}
             MenuProps={MenuProps}
             >
