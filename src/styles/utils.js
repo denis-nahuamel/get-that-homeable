@@ -106,6 +106,10 @@ export const contRowGap = `
     ${contRow};
     gap:20px;
 `
+export const contRow8Gap = `
+    ${contRow};
+    gap:8px;
+`
 
 export const contGap = `
     ${basicContainer};
