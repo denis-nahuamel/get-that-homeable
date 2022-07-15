@@ -95,17 +95,21 @@ background: #E1E2E1;
 border-radius: 8px;
 `
 // width: 274px;
-export const sendButton = `
-gap: 8px;
-margin: 16px;
-width: 90%;
-height: 40px;
+export const  pinkButton = `
+    height: 40px;
 
-border: 0px;
+    border: 0px;
     color: white;
 
-background: #F48FB1;
-border-radius: 16px;
+    background: #F48FB1;
+    border-radius: 16px;
+`
+export const sendButton = `
+    ${pinkButton};
+    gap: 8px;
+    margin: 16px;
+    width: 90%;
+
 `
 export const signUpContainer = `
     ${contColumn};

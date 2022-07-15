@@ -25,7 +25,7 @@ function App() {
         {/* <LoginForm /> */}
         {/* <Header /> */}
         {/* <LoginPage /> */}
-        <FilePage />
+        {/* <FilePage /> */}
         {/* <HomePage /> */}
         {/* <PropertyData /> */}
         {/* <Routes >
@@ -44,7 +44,7 @@ function App() {
           </Route>
 
         </Routes>
-        <Footer /> */}
+        <Footer /> 
         {/* <PropertyCard /> */}
     </div>
   );
