@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import {css} from "@emotion/react";
 export const sansDefault = `
     font-family: 'Source Sans Pro';
     font-style: normal;
@@ -79,6 +81,14 @@ export const montW400S15 = `
     ${Montserrat};
     font-weight: 400;
     font-size: 15px;
+    line-height: 28px;
+    letter-spacing: 0.15px;
+    color: #373737;
+`
+export const montW300S64 = `
+    ${Montserrat};
+    font-weight: 300;
+    font-size: 64px;
     line-height: 28px;
     letter-spacing: 0.15px;
     color: #373737;
