@@ -32,7 +32,6 @@ export const PriceContent = ({onFilterParams}) => {
     )
 }
 export const PetsAreaContent = ({onFilterParams}) => {
-    console.log("pa", onFilterParams)
     const handleFilterPetsArea = (event) => {
         event.preventDefault();
         let values= event.target.elements;
