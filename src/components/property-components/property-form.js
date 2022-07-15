@@ -13,8 +13,14 @@ import {InputComponent, SelectComponent} from "../input-component";
 import { addProperty } from "../../services/property-service";
 import SearchLocationInput from "../location/search-location-input";
 import { montW500S20 } from "../../styles/typography";
-const PropertyForm = () => {
+import { ConstructionOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
+function PropertyForm() {
+    const navigate = useNavigate();
+
     const [rentSale, setRentSale] = useState('rent');
+
     const [photos, setPhotos] = useState(null);
 	const [error, setError] = useState(false)
     const handleRentSale= (_event,value)=>{
@@ -24,6 +30,7 @@ const PropertyForm = () => {
     function handleFileChange(event) {
 		setPhotos(event.target.files)
 	}
+   
     function ImgPreview({photos}) {
 		return (
 			photos? Array.from(photos).map(function (photo, idx) {
@@ -31,27 +38,48 @@ const PropertyForm = () => {
     	}) : ""
 		)
 	}
-    const Wrapper = styled("div")`
+    const stylesdiv = css`
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        `;
+    `;
+
+    const [checked, setChecked] = useState({
+        apartment: false, 
+        house: false
+    });
+
+    function handleChecked(event, property_type)  {
+        if (property_type === "apartment") {
+            setChecked({
+                apartment: true, 
+                house: false
+            })
+        } else if (property_type === "house") {
+            setChecked({
+                apartment: false, 
+                house: true
+            })
+        }
+        // console.log(checked)
+   
+    };
     const handleSubmit =(event)=>{
         let values = event.target.elements;
         event.preventDefault();
-
+        
         const params = {
             operation: rentSale==="rent"?"rent": "sale",
             address: values.address.value,//
             // montly: rentSale==="rent"? values.montlyRent.value: null,
-            maintanance:rentSale==="rent"? values.maintanance.value:null, 
+            maintenance:rentSale==="rent"? parseInt(values.maintenance.value):null, 
             pets:rentSale==="rent"? values.pets.checked:null,
-            price: values.price.value,
-            property_type: values.apartment.value==="on"?"apartment": "house",// corregir
-            bedrooms: values.bedrooms.value,
-            bathrooms:values.bathrooms.value,
-            area: values.area.value,
+            price: parseInt(values.price.value),
+            property_type: checked.apartment===true?"apartment": "house",
+            bedrooms: parseInt(values.bedrooms.value),
+            bathrooms:parseInt(values.bathrooms.value),
+            area: parseFloat(values.area.value),
             about: values.about.value,//
 
         }
@@ -60,31 +88,40 @@ const PropertyForm = () => {
 		formData.append("property[address]", params.address)
 		formData.append("property[price]", params.price)
 		formData.append("property[operation]", params.operation)
+        formData.append("property[maintenance]", params.maintenance)
 		formData.append("property[property_type]", params.property_type)
 		formData.append("property[area]", params.area)
 		formData.append("property[bedrooms]", params.bedrooms)
 		formData.append("property[bathrooms]", params.bathrooms)
 
-        if (photos.length > 3 ) {
-			setError(true)
-		} else {
-			for (let i = 0; i < photos.length; i++) {
-				if (Math.round((photos[i].size / 1024)) > 5) {
-					formData.append("property[photo][]", photos[i])
-					setError(true)
-				}
-			}
-		}
-
-		if (error === false) {
-			addProperty(formData).then((response) => response.json())
-			.then((result) => console.log(result))
-			.catch(error=>console.log(error));
-		} 
-
+        console.log(params)
+        setError(false)
+        if (photos) {
+            console.log(photos.length)
+            if (photos.length > 3 ) {
+                setError(true)
+            } else {
+                for (let i = 0; i < photos.length; i++) {
+                    formData.append("property[photo][]", photos[i])
+                    console.log(photos[i].size)
+                    if (Math.round((photos[i].size / 1e6)) > 5) {
+                        setError(true)
+                    }
+                }
+            }
+        }   
+        console.log(error)
+        if (error === false) {
+            console.log("api")
+            addProperty(formData).then((response) => {
+                console.log(response)
+                navigate("/list-properties")
+            })
+            .catch(error=>console.log(error));
+        } 
     }
     return (
-        <Wrapper> {
+        <div css={stylesdiv}>
             <div css={css`${contColumnStart}`}>
             <form onSubmit={handleSubmit}>
                 <div css={css`${labelInputCont}`}>
@@ -117,11 +154,23 @@ const PropertyForm = () => {
                     <label css={css`${labelForm}`}>PROPERTY TYPE</label>
                     <div css={css`${contRowCenter}`}>
                         <div css={css`${contRowCenter}`}>
-                            <input css={css`${checkbox}`} type="checkbox" name="apartment" id="apartment"/>
+                        <input
+                            css={css`${checkbox}`}
+                            name="apartment"
+                            checked={checked.apartment}
+                            onChange={event=>{handleChecked(event,"apartment")}}
+                            type="checkbox"
+                        />
                             <label css={css`${labelForm}`}>Apartment</label>
                         </div>
                         <div css={css`${contRowCenter}`}>
-                            <input css={css`${checkbox}`} type="checkbox" name="house" id="house"/>
+                            <input 
+                            css={css`${checkbox}`} 
+                            type="checkbox" 
+                            name="house" 
+                            id="house"
+                            checked={checked.house}
+                            onChange={event=>{handleChecked(event,"house")}}/>
                             <label css={css`${labelForm}`}>House</label>
                         </div>
                     </div>
@@ -148,7 +197,8 @@ const PropertyForm = () => {
                     <textarea css={css`${textArea}`} 
                         id="about"
                         name="about"
-                        placeholder="My apartment is great because..."/>
+                        placeholder="My apartment is great because..."
+                        />
                 </div>
                 <div css={css`${labelInputCont}`}>
                     <label css={css`${montW500S20}`} >Photos</label>
@@ -165,17 +215,13 @@ const PropertyForm = () => {
                     <button css={css`${sendButton}`} type="submit">PUBLISH PROPERTY LISTING</button>
                 </div>
             </form>
-            {/* thumbnail images */}
+            
             <div css={css`${thumbImages}`}>
                     <ImgPreview photos={photos}/>
-                    {/* <label>No images yet</label> */}
-                </div>
+            </div>
 		    <p>{error === true ? "Only 3 files of up to 5MB are allowed" : ""}</p>
-	
+            </div>
         </div>
-            }
-        </Wrapper>
-        
     )
 }
 export default PropertyForm;

@@ -9,8 +9,8 @@ export const RentSale = ({value}) => {
         <InputComponent labelText={"MONTLY RENT"} 
                     idInput={"price"} 
                     placeholder={"2000"} />
-        <InputComponent labelText={"MAINTANANCE"} 
-                    idInput={"maintanance"} 
+        <InputComponent labelText={"MAINTENANCE"} 
+                    idInput={"maintenance"} 
                     placeholder={"100"} />
     </div>: <InputComponent labelText={"PRICE"} 
                     idInput={"price"} 
