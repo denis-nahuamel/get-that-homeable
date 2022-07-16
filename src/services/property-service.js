@@ -3,7 +3,9 @@ import apiFetch from "./api-fetch"
 export const addProperty = (property, queryParams) => {
     return apiFetch("/properties",  {body: property, property_creator: true}).then(response => {return response})
  }
-
+export const getPropertiesHome = ( )=> {
+    return apiFetch("/front_properties").then(response => {return response})
+}
 export const getProperties = ({ address, min_price, max_price, min_area, max_area, pets, page,
     bedrooms, bathrooms, operation_rent, operation_sale, property_type_apartment, property_type_house, limit}) => {
     const endpoint = `/properties?` + 

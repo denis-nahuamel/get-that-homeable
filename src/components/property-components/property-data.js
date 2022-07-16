@@ -9,20 +9,21 @@ import { contColumn, contRow, contRowBetween, contRowCenter, contRowCenterGap, c
 import Slider from "../slider";
 import { montW400S15, montW400S24, montW400S36 } from "../../styles/typography";
 import DataContainer from "./data-container";
+import {useLocation} from "react-router-dom";
 
 export const PropertyData = ({property}) => {
-    const direction = "Francisco de Paula Ugarriza 27";
+    const location = useLocation();
+    const propertyData = location.state.propertyData;
+    const {price, property_type, address, bedrooms, bathrooms, area, pets, about }= propertyData;
     const direction2 = "Miraflores, Lima";
-    const price = "3,000";
     const price2 = "+100";
-    const description = "3 Bedroom/2 Bathroom apartment available for ASAP move-in!Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.";
     return (
     <div css={css`${contRow}; gap: 16px; margin: 32px`}>
         {/* info part */}
         <div>
             <Slider />
             <div css={css`${contRowBetween}`} >
-                <p css={css`${montW400S24}`}> {direction}</p>
+                <p css={css`${montW400S24}`}> {address}</p>
                 <div css={css`${contRowCenter}; gap: 12px`}>
                     <MonetizationOnOutlinedIcon />
                     <p css={css`${montW400S24}`}>{price}</p>
@@ -32,11 +33,11 @@ export const PropertyData = ({property}) => {
                 <p css={css`${montW400S15}`}> {direction2}</p>
                 <p css={css`${montW400S15}`}>{price2}</p>    
             </div>
-            <DataContainer bedrooms={4} bathrooms={4} area={180} pets={"si"} />
+            <DataContainer bedrooms={bedrooms} bathrooms={bathrooms} area={area} pets={"si"} />
             <div css={css`${contStart}`}>About this property</div>
-            <div css={css`${contStart}`}>{description}</div>
+            <div css={css`${contStart}`}>{about}</div>
             <div css={css`${contStart}`}>Location</div>
-            <div css={css`${contStart}`}>{direction}</div>
+            <div css={css`${contStart}`}>{address}</div>
         </div>
         {/* contact advertiser */}
         <div>

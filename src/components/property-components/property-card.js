@@ -12,10 +12,16 @@ import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 import DataContainer from "./data-container";
 import { theme } from "../themes";
 import areaImg from "../../images/icons/bx-area.png"
+import { useNavigate } from "react-router-dom";
 export const PropertyCard = ({property}) => {
+    const navigate = useNavigate();
     const {price, property_type, address, bedrooms, bathrooms, area, pets, about }= property;
+    const handlePropertyData = (event) => {
+        event.preventDefault();
+        navigate("property-data",{state:{propertyData:property}})
+    }
     return (
-        <div css={css`${propertyCard}`}>
+        <div css={css`${propertyCard}`} onClick={handlePropertyData}>
             <div>
                 <img src={slide} css={css`${imageCard}`} alt="images"/>
                 <div>for free</div>
