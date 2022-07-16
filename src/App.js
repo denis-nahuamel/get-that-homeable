@@ -42,6 +42,7 @@ function App() {
             <Route path="select-profile/sign-up" element = {<SignUpPage/>}/>
             <Route path="select-profile" element = {<SelectProfile/>}/>
             <Route path = "create-property" element = {<PropertyForm />} />
+            <Route path = "property-data" element={<PropertyData />} />
           </Route>
 
         </Routes>
