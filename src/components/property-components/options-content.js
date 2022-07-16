@@ -73,7 +73,7 @@ export function AddressContent({onFilterParams}) {
                     />
                 )}
             />
-            <button onClick={handleAddressPrice}>DONE</button>
+            <button onClick={handleAddressPrice}>Search</button>
         </div>
     );
   }
@@ -98,7 +98,7 @@ export const PriceContent = ({onFilterParams}) => {
                     <input placeholder="min" id="min_price" name="min_price"></input> - 
                     <input placeholder="max" id="max_price" name="max_price"></input>
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -125,7 +125,7 @@ export const PetsAreaContent = ({onFilterParams}) => {
                     <input placeholder="min" id="min_area" name="min_area"/> - 
                     <input placeholder="max" id="max_area" name="max_area"/>
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -149,7 +149,7 @@ export const PropertyContent = ({onFilterParams}) => {
                     <input type="checkbox" id="apartment" name="apartment"/> Apartments 
                     
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -234,7 +234,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
             <div>
         
             </div>
-            {/* <div><button>DONE</button></div> */}
+            {/* <div><button>Search</button></div> */}
         </div>
     )
 }
