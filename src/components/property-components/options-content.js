@@ -2,10 +2,91 @@
 import {css} from "@emotion/react";
 import { ThemeProvider } from "@emotion/react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toggle } from "../../styles/form"
 import { contColumn, contRow } from "../../styles/utils";
 import { theme } from "../themes"
+import { getAddresses } from "../../services/property-service";
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+export function AddressContent({onFilterParams}) {
+    const [adressList, setAdressList] = useState([]);
+    
+    const [options, setOptions] = useState([]);
+    const [value, setValue] = useState(null);
+    const [inputValue, setInputValue] = useState('');
+
+    const handleAddressPrice = (event) => {
+        onFilterParams({
+            address: value
+        })
+        console.log(value)
+
+    }
+    
+    useEffect(() => {
+        const callSearchService = () => {
+            getAddresses({address:inputValue}).then(response => {
+                console.log(response)
+                setOptions(response === "No Content" ? [] : response)
+                // console.log(options)
+            });
+          }
+        
+          let debouncer = setTimeout(() => {
+            callSearchService();
+          }, 2000);
+          return () => {
+            clearTimeout(debouncer);
+          }
+      }, [inputValue])
+
+    return (
+        <div>
+      <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+            setValue(newValue);
+            console.log(newValue)
+
+        }}
+        inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+            setInputValue(newInputValue)
+            
+            
+        }}
+        id="country-select-demo"
+        sx={{ width: 300 }}
+        options={options}
+        autoHighlight
+        // onChange={}
+        // getOptionLabel={(option) => option.label}
+        renderOption={(props, option) => (
+            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={options.indexOf(option)}>
+                {option}
+            </Box> 
+        )}
+        renderInput={(params) => (
+            <TextField
+                {...params}
+                label="Choose a country"
+                inputProps={{
+                ...params.inputProps,
+                autoComplete: 'new-password', // disable autocomplete and autofill
+                }}
+            />
+        )}
+      />
+      <button onClick={handleAddressPrice}>DONE</button>
+      </div>
+      
+    );
+  }
+  
 
 export const PriceContent = ({onFilterParams}) => {
     const handleFilterPrice = (event) => {
@@ -135,6 +216,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
     )
 }
 const ReturnContent = ({type, onFilterParams})=>{
+    // if(type==="address") return <AddressContent onFilterParams={onFilterParams} />
     if(type==="price") return <PriceContent onFilterParams={onFilterParams} />
     if(type==="property_type") return <PropertyContent onFilterParams={onFilterParams}/>
     if(type==="beds_baths") return <BedsBathsContent onFilterParams={onFilterParams}/>
