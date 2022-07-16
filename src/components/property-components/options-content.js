@@ -15,7 +15,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 export function AddressContent({onFilterParams}) {
     const [adressList, setAdressList] = useState([]);
     
-    const [options, setOptions] = useState([]);
     const [value, setValue] = useState(null);
     const [inputValue, setInputValue] = useState('');
 
@@ -24,21 +23,19 @@ export function AddressContent({onFilterParams}) {
             address: value
         })
         console.log(value)
-
     }
     
     useEffect(() => {
         const callSearchService = () => {
             getAddresses({address:inputValue}).then(response => {
                 console.log(response)
-                setOptions(response === "No Content" ? [] : response)
-                // console.log(options)
+                setAdressList(response === "No Content" ? [] : response)
+                // console.log(adressList)
             });
           }
-        
           let debouncer = setTimeout(() => {
             callSearchService();
-          }, 2000);
+          }, 1000);
           return () => {
             clearTimeout(debouncer);
           }
@@ -46,44 +43,38 @@ export function AddressContent({onFilterParams}) {
 
     return (
         <div>
-      <Autocomplete
-        value={value}
-        onChange={(event, newValue) => {
-            setValue(newValue);
-            console.log(newValue)
-
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue)
-            
-            
-        }}
-        id="country-select-demo"
-        sx={{ width: 300 }}
-        options={options}
-        autoHighlight
-        // onChange={}
-        // getOptionLabel={(option) => option.label}
-        renderOption={(props, option) => (
-            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={options.indexOf(option)}>
-                {option}
-            </Box> 
-        )}
-        renderInput={(params) => (
-            <TextField
-                {...params}
-                label="Choose a country"
-                inputProps={{
-                ...params.inputProps,
-                autoComplete: 'new-password', // disable autocomplete and autofill
+            <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                    console.log(newValue)
                 }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue)           
+                }}
+                id="address autocomplete"
+                sx={{ width: 300 }}
+                options={adressList}
+                autoHighlight
+                renderOption={(props, option) => (
+                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={adressList.indexOf(option)}>
+                        {option}
+                    </Box> 
+                )}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Type an address"
+                        inputProps={{
+                        ...params.inputProps,
+                        autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
             />
-        )}
-      />
-      <button onClick={handleAddressPrice}>DONE</button>
-      </div>
-      
+            <button onClick={handleAddressPrice}>DONE</button>
+        </div>
     );
   }
   
