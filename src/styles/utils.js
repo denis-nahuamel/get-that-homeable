@@ -90,6 +90,10 @@ export const contColumnCenter = `
     flex-direction: column;
     align-items: center;
 `
+export const contColumnCenterCenter = `
+    ${contColumnCenter};
+    justify-content:center;
+`
 export const contRowCenter = `
     ${contRow}
     align-items: center;
