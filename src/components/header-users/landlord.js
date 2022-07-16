@@ -7,6 +7,7 @@ import addpeople from "../../images/AddPeople.png";
 import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 const Landlord = ()=> {
+    const navigate = useNavigate();
     const handleLogout = () => {
 
     }
@@ -15,6 +16,9 @@ const Landlord = ()=> {
     }
     const handleProfile = () => {
 
+    }
+    const handleNewProperty = () => {
+            navigate("/create-property")
     }
     return (
         <div css={css` ${contRowAround}; display: flex; `} >
@@ -27,6 +31,11 @@ const Landlord = ()=> {
                 {/* <img src={addpeople} alt="" /> */}
                 <HouseOutlinedIcon  />
                 MY PROPERTIES
+            </button>
+            <button css={css` ${pluspeople} `} onClick={handleNewProperty} >
+                {/* <img src={addpeople} alt="" /> */}
+                <HouseOutlinedIcon  />
+                NEW PROPERTY
             </button>
             <button css={css` ${pluspeople} `} onClick={handleProfile} >
                 {/* <img src={addpeople} alt="" /> */}

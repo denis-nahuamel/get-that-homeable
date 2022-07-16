@@ -14,7 +14,7 @@ const ButtonFilter = ({text, value, onFilterParams}) => {
         <div css={css`display:flex; flex-direction:column   `}>
             <button css={css`${buttonFilter}`} onClick={handleVisibility}>{text}</button>
             {hideOptions=== "block"?
-            <div css={css`${filterOptions}`}><ReturnContent  type={value} onFilterParams={onFilterParams}/></div>:null}
+            <div css={css`${filterOptions}`}><ReturnContent  type={value} onFilterParams= {onFilterParams} /></div>:null}
         </div>
     )
 }
