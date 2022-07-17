@@ -2,10 +2,82 @@
 import {css} from "@emotion/react";
 import { ThemeProvider } from "@emotion/react"
 import { ToggleButton, ToggleButtonGroup } from "@mui/material"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toggle } from "../../styles/form"
 import { contColumn, contRow } from "../../styles/utils";
 import { theme } from "../themes"
+import { getAddresses } from "../../services/property-service";
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+export function AddressContent({onFilterParams}) {
+    const [adressList, setAdressList] = useState([]);
+    
+    const [value, setValue] = useState(null);
+    const [inputValue, setInputValue] = useState('');
+
+    const handleAddressPrice = (event) => {
+        onFilterParams({
+            address: value
+        })
+        console.log(value)
+    }
+    
+    useEffect(() => {
+        const callSearchService = () => {
+            getAddresses({address:inputValue}).then(response => {
+                console.log(response)
+                setAdressList(response === "No Content" ? [] : response)
+                // console.log(adressList)
+            });
+          }
+          let debouncer = setTimeout(() => {
+            callSearchService();
+          }, 1000);
+          return () => {
+            clearTimeout(debouncer);
+          }
+      }, [inputValue])
+
+    return (
+        <div>
+            <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                    console.log(newValue)
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue)           
+                }}
+                id="address autocomplete"
+                sx={{ width: 300 }}
+                options={adressList}
+                autoHighlight
+                renderOption={(props, option) => (
+                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props} key={adressList.indexOf(option)}>
+                        {option}
+                    </Box> 
+                )}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        label="Type an address"
+                        inputProps={{
+                        ...params.inputProps,
+                        autoComplete: 'new-password', // disable autocomplete and autofill
+                        }}
+                    />
+                )}
+            />
+            <button onClick={handleAddressPrice}>Search</button>
+        </div>
+    );
+  }
+  
 
 export const PriceContent = ({onFilterParams}) => {
     console.log("pa", onFilterParams)
@@ -26,7 +98,7 @@ export const PriceContent = ({onFilterParams}) => {
                     <input placeholder="min" id="min_price" name="min_price"></input> - 
                     <input placeholder="max" id="max_price" name="max_price"></input>
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -53,7 +125,7 @@ export const PetsAreaContent = ({onFilterParams}) => {
                     <input placeholder="min" id="min_area" name="min_area"/> - 
                     <input placeholder="max" id="max_area" name="max_area"/>
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -77,7 +149,7 @@ export const PropertyContent = ({onFilterParams}) => {
                     <input type="checkbox" id="apartment" name="apartment"/> Apartments 
                     
                 </div>
-                <div><button type="submit">DONE</button></div>
+                <div><button type="submit">Search</button></div>
             </form>
         </div>
     )
@@ -162,12 +234,13 @@ export const BedsBathsContent = ({onFilterParams}) => {
             <div>
         
             </div>
-            {/* <div><button>DONE</button></div> */}
+            {/* <div><button>Search</button></div> */}
         </div>
     )
 }
 const ReturnContent = ({type, onFilterParams, params})=>{
-    console.log("para", params)
+    // console.log("para", params)
+    if(type==="address") return <AddressContent onFilterParams={onFilterParams} />
     if(type==="price") return <PriceContent onFilterParams={onFilterParams} />
     if(type==="property_type") return <PropertyContent onFilterParams={onFilterParams}/>
     if(type==="beds_baths") return <BedsBathsContent onFilterParams={onFilterParams}/>

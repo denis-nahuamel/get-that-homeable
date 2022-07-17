@@ -29,3 +29,12 @@ export const getProperties = ({ address, min_price, max_price, min_area, max_are
         return response
     })
 }
+
+export const getAddresses = ({ address }) => {
+    const endpoint = `/addresses?` + 
+    `address${address ? "="+address : ""}`
+
+    return apiFetch(endpoint).then(response => {
+        return response
+    })
+}
