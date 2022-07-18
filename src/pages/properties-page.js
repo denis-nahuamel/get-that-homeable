@@ -11,8 +11,9 @@ import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
 
 const PropertiesPage = ()=> {
+    
     const [properties, setProperties] = useState([])
-    const [info, setInfo] = useState({})
+    const [pagination, setPagination] = useState({})
     const [filterParams, setFilterParams] = useState({ 
         address : null, 
         min_price: null, 
@@ -30,10 +31,9 @@ const PropertiesPage = ()=> {
         })
 
     useEffect(()=>{
-        getProperties(filterParams).then(response => {
-            setProperties(response.results)
-            setInfo(response.info)
-            console.log(response.info)
+        getProperties(filterParams).then(response => {           
+            setProperties(response.properties)
+            setPagination(response.pagination)
         })
     },[filterParams])
     const handleFilterParams = (filters) => {

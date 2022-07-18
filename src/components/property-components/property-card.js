@@ -12,13 +12,17 @@ import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 import DataContainer from "./data-container";
 import { theme } from "../themes";
 import areaImg from "../../images/icons/bx-area.png"
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 export const PropertyCard = ({property}) => {
+    // console.log(property)
     const navigate = useNavigate();
-    const {price, property_type, address, bedrooms, bathrooms, area, pets, about }= property;
+
+    const {price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
+
     const handlePropertyData = (event) => {
         event.preventDefault();
-        navigate("property-data",{state:{propertyData:property}})
+        navigate(`/list-properties/${property.id}`, {state:{propertyData:property}})
+        // navigate("property-data",{state:{propertyData:property}})
     }
     return (
         <div css={css`${propertyCard}`} onClick={handlePropertyData}>
@@ -60,6 +64,7 @@ export const PropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
+
         </div>
     )
 }
