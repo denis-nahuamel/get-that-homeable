@@ -44,3 +44,11 @@ export const getAddresses = ({ address }) => {
         return response
     })
 }
+
+export const getListedProperties = (id) => {
+    const endpoint = `/listed_properties?`
+
+    return apiFetch(endpoint).then(response => {
+        return response
+    })
+}

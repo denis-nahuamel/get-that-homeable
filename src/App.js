@@ -11,6 +11,7 @@ import PropertyData from './components/property-components/property-data';
 import  PropertyCard  from './components/property-components/property-card';
 import PropertyForm from './components/property-components/property-form';
 import PropertiesPage from './pages/properties-page';
+import LandlordPropertiesPage from './pages/landlord-properties-page';
 import Footer from './components/footer';
 import { Route, Routes } from 'react-router-dom';
 import SignUpPage from './pages/sign-up-page';
@@ -45,6 +46,8 @@ function App() {
             <Route path="list-properties" element = {<PropertiesPage />}/>
               {/* <Route path=":id" element={<PropertyData />} /> */}
             <Route path = "list-properties/*" element={<PropertyData />} />
+            <Route path = "my-listed-properties" element={<LandlordPropertiesPage />} />
+
           </Route>
 
         </Routes>
