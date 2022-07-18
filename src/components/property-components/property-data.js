@@ -14,6 +14,9 @@ import { useParams } from "react-router-dom"
 import { getProperty } from "../../services/property-service";
 import { useEffect, useState } from "react";
 
+import Map from '../../components/location/map' // import the map here
+
+
 export const PropertyData = () => {
     const [state, setState] = useState({
         loading: true,
@@ -100,7 +103,7 @@ export const PropertyData = () => {
                     <p css={css`${montW400S15}`}>{price2}</p>    
                 </div> */}
                 <DataContainer bedrooms={bedrooms} bathrooms={bathrooms} area={area} pets={pets} />
-                <div css={css`${contStart}`}>About this property</div>
+                <div css={css`${contStart}`}>{about}</div>
                 <div css={css`${contStart}`}>{about}</div>
                 <div css={css`${contStart}`}>Location</div>
                 <div css={css`${contStart}`}>{address}</div>
@@ -113,7 +116,9 @@ export const PropertyData = () => {
                         <p> Add to favorites</p>
                 </div>
             </div>
-            
+            <div>
+                <Map address={null}/>
+            </div>
             </div>)}
         </div>
     )
