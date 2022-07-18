@@ -10,6 +10,7 @@ import { useAuth } from "../context/auth-context";
 import Visitor from "./header-users/visitor";
 import Landlord from "./header-users/landlord";
 import HomeSeeker from "./header-users/homeseeker";
+
 const Header = () => {
   const navigate= useNavigate();
   const {user} = useAuth();

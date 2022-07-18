@@ -3,6 +3,12 @@ import apiFetch from "./api-fetch"
 export const addProperty = (property, queryParams) => {
     return apiFetch("/properties",  {body: property, property_creator: true}).then(response => {return response})
  }
+ export const getProperty = (id) => {
+    return apiFetch("/properties/"+id).then(response => {
+        console.log(response)
+        return response
+    })
+ }
 export const getPropertiesHome = ( )=> {
     return apiFetch("/front_properties").then(response => {return response})
 }
