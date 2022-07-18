@@ -11,17 +11,17 @@ function Map({address}) {
 
   const [coordinates , setCoordinates] = useState(defaultCoordinates);
 
-  useEffect(() => {
-    if (address) {
+  // useEffect(() => {
+  //   if (address === null) {
 
-      fetch(`https://maps.googleapis.com/maps/api/js?key=AIzaSyAOnJfG7WLaEiGitMAAINtWpMUT04tHE5o&libraries=places&address=${address}`).
-      then(response => {
-        console.log(response)
-        setCoordinates(response)
-      });
-    }
+  //     fetch(`https://maps.googleapis.com/maps/api/js?key=AIzaSyAOnJfG7WLaEiGitMAAINtWpMUT04tHE5o&libraries=places&address=${address}`).
+  //     then(response => {
+  //       console.log(response)
+  //       setCoordinates(response)
+  //     });
+  //   }
     
-  }, [])
+  // }, [])
 
   
   return (

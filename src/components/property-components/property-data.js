@@ -32,7 +32,6 @@ export const PropertyData = () => {
     let params = useParams()
     let id = params["*"]
     const location = useLocation();
-    console.log(user)
     useEffect(()=> {
         if (location.state !== null) {
             setState({
@@ -147,7 +146,7 @@ export const PropertyData = () => {
                 )
             }
             <div>
-                <Map address={null}/>
+                <Map address={address}/>
             </div>
             </div>
             </div>)}
