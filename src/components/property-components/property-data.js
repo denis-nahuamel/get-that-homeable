@@ -65,6 +65,7 @@ export const PropertyData = () => {
     }
     const stylesdiv = css`
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
@@ -75,6 +76,7 @@ export const PropertyData = () => {
 
         @media (max-width: 800px) {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -86,6 +88,7 @@ export const PropertyData = () => {
         `;
     const stylesdivSecond = css`
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         gap: 1rem;
         margin: 0.2rem;

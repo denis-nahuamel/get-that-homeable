@@ -7,20 +7,21 @@ import addpeople from "../../images/AddPeople.png";
 import HouseOutlinedIcon from '@mui/icons-material/HouseOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import { useAuth } from "../../context/auth-context";
+
 const Landlord = ()=> {
     const navigate = useNavigate();
     const {logoutAuth} = useAuth();
     const handleLogout = () => {
         logoutAuth().then(response => console.log(response))
     }
-    const handleSavedProperties = () => {
-
+    const handleListedProperties = () => {
+        navigate("/my-listed-properties")
     }
     const handleProfile = () => {
 
     }
     const handleNewProperty = () => {
-            navigate("/create-property")
+        navigate("/create-property")
     }
     return (
         <div css={css` ${contRowAround}; display: flex; `} >
@@ -29,7 +30,7 @@ const Landlord = ()=> {
                 <PersonAddAltOutlinedIcon />
                 LOGOUT
             </button>
-            <button css={css` ${pluspeople} `} onClick={handleSavedProperties} >
+            <button css={css` ${pluspeople} `} onClick={handleListedProperties} >
                 {/* <img src={addpeople} alt="" /> */}
                 <HouseOutlinedIcon  />
                 MY PROPERTIES
