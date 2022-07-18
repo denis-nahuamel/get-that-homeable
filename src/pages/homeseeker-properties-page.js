@@ -6,27 +6,27 @@ import FilterProperties from "../components/property-components/filter-propertie
 import ListProperties from "../components/property-components/list-properties";
 import ReturnContent from "../components/property-components/options-content";
 import PropertyCard from "../components/property-components/property-card";
-import { getSavedProperties } from "../services/property-service";
+import { getListedProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
 import { useAuth } from "../context/auth-context";
 
-const LandlordPropertiesPage = ()=> {
+const HomeseekerPropertiesPage = ()=> {
     const {user} = useAuth();
 
     const [properties, setProperties] = useState([])
 
     useEffect(()=>{
-        getSavedProperties().then(response => {           
+      getListedProperties().then(response => {           
             setProperties(response)
         })
     },[])
    
     return (
         <>
-        {user?.user_type === "landlord" ? (
+        {user?.user_type === "homeseeker" ? (
             <ListProperties properties = {properties} />
-        ) : "You must be logged as a landlord in order to list properties"}
+        ) : "You must be logged as a landlord in order to save properties"}
         </>)
 }
-export default LandlordPropertiesPage;
+export default HomeseekerPropertiesPage;
