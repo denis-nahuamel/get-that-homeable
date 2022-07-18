@@ -60,3 +60,11 @@ export const getSavedProperties = (id) => {
         return response
     })
 }
+
+export const saveProperty = (body) => {
+    const endpoint = `/saveds`
+
+    return apiFetch(endpoint, {body: body}).then(response => {
+        return response
+    })
+}

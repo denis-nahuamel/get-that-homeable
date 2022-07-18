@@ -6,7 +6,7 @@ import FilterProperties from "../components/property-components/filter-propertie
 import ListProperties from "../components/property-components/list-properties";
 import ReturnContent from "../components/property-components/options-content";
 import PropertyCard from "../components/property-components/property-card";
-import { getListedProperties } from "../services/property-service";
+import { getSavedProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
 import { useAuth } from "../context/auth-context";
@@ -17,7 +17,7 @@ const HomeseekerPropertiesPage = ()=> {
     const [properties, setProperties] = useState([])
 
     useEffect(()=>{
-      getListedProperties().then(response => {           
+        getSavedProperties().then(response => {           
             setProperties(response)
         })
     },[])

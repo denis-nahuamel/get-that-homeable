@@ -11,7 +11,7 @@ import { montW400S15, montW400S24, montW400S36 } from "../../styles/typography";
 import DataContainer from "./data-container";
 import {useLocation} from "react-router-dom";
 import { useParams } from "react-router-dom"
-import { getProperty } from "../../services/property-service";
+import { getProperty, saveProperty } from "../../services/property-service";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 
@@ -26,13 +26,14 @@ export const PropertyData = () => {
       });
     const { loading, data: property, error } = state;
 
-    let {price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
+    let {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
     const {user} = useAuth();
-
+    console.log(user)
     let params = useParams()
-    let id = params["*"]
+    let idParam = params["*"]
     const location = useLocation();
     useEffect(()=> {
+        
         if (location.state !== null) {
             setState({
                 loading: false,
@@ -40,7 +41,7 @@ export const PropertyData = () => {
                 error: null
             })
         } else {
-            getProperty(id).then(response=>{
+            getProperty(idParam).then(response=>{
                 setState({
                     loading: false,
                     data: response,
@@ -57,11 +58,17 @@ export const PropertyData = () => {
         }   
         }, [])
     
-    function handleContact(event) {
+    function handleContact(event, id) {
         
     }
-    function handleFavorite(event) {
-        
+    function handleFavorite(event, id) {
+        const body = {
+            contacted: false,
+            favorite: true,
+            property_id: id
+        }
+        console.log(body)
+        saveProperty(body).then(console.log)
     }
     const stylesdiv = css`
         display: flex;
@@ -133,10 +140,10 @@ export const PropertyData = () => {
             { user?.user_type === "homeseeker" ?
                 (
                     <div css={css`${contactCard}`}>
-                        <button css={css`${sendButton}`} onClick={handleContact} >
+                        <button css={css`${sendButton}`} onClick={event=>{handleContact(event,id)}} >
                             CONTACT ADVERTISER
                         </button>
-                        <button css={styledButton} onClick={handleFavorite}>
+                        <button css={styledButton} onClick={event=>{handleFavorite(event,id)}}>
                             <FavoriteBorderOutlinedIcon fontSize="large"/>
                             <p>Add to favorites</p>
                         </button>     
