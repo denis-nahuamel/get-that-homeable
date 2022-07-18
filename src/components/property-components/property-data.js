@@ -131,10 +131,10 @@ export const PropertyData = () => {
             { user?.user_type === "homeseeker" ?
                 (
                     <div css={css`${contactCard}`}>
-                        <button css={css`${sendButton}`}  >
+                        <button css={css`${sendButton}`} onClick={handleContact} >
                             CONTACT ADVERTISER
                         </button>
-                        <button css={styledButton}>
+                        <button css={styledButton} onClick={handleFavorite}>
                             <FavoriteBorderOutlinedIcon fontSize="large"/>
                             <p>Add to favorites</p>
                         </button>     
