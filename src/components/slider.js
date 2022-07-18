@@ -1,6 +1,6 @@
  /** @jsxImportSource @emotion/react */
 
-import { css, ThemeProvider } from "@emotion/react";
+import { css } from "@emotion/react";
 
 const stylesdiv = css`
     display: flex;
@@ -13,19 +13,23 @@ const stylesdiv = css`
         }
     `;
 
+
 const Slider = ({photos}) => {
+    let defaultPhoto = "https://res.cloudinary.com/dashujoof/image/upload/v1657861293/rwuv3fhpesvi7a5xgqkw.png";
+
     return (
         <>
         <div css={stylesdiv}>
-            {photos.map((photo,idx)=>{
+            {photos.length === 0 ? (
+            <img width="300px" key={1} src={defaultPhoto} alt={"default img"}></img>) :
+            (photos.map((photo,idx)=>{
                 return (
                     <img width="300px" key={idx} src={photo.url} alt={idx}></img>
                 )
-            })}
+            }))
+        }
         </div>
         </>
-
-    
     )
 }
 export default Slider;

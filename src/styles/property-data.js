@@ -4,9 +4,14 @@ import { contRow, contRowCenter, contRowSpaceAround } from "./utils";
 
 export const contactCard = `
     ${card};
-    width: 210px;
-    height: 150px;
-    margin: 16px;
+    width: 30%;
+    height: 20%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 export const propertyCard = `
     ${cardWthPadding};

@@ -109,6 +109,7 @@ export const sendButton = `
     gap: 8px;
     margin: 16px;
     width: 90%;
+    cursor: pointer;
 
 `
 export const signUpContainer = `

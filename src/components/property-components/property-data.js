@@ -13,6 +13,7 @@ import {useLocation} from "react-router-dom";
 import { useParams } from "react-router-dom"
 import { getProperty } from "../../services/property-service";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/auth-context";
 
 import Map from '../../components/location/map' // import the map here
 
@@ -25,12 +26,13 @@ export const PropertyData = () => {
       });
     const { loading, data: property, error } = state;
 
-    let {price, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
+    let {price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
+    const {user} = useAuth();
 
     let params = useParams()
     let id = params["*"]
     const location = useLocation();
-
+    console.log(user)
     useEffect(()=> {
         if (location.state !== null) {
             setState({
@@ -56,6 +58,12 @@ export const PropertyData = () => {
         }   
         }, [])
     
+    function handleContact(event) {
+        
+    }
+    function handleFavorite(event) {
+        
+    }
     const stylesdiv = css`
         display: flex;
         align-items: center;
@@ -63,6 +71,9 @@ export const PropertyData = () => {
         gap: 0.5rem;
         margin: 0.2rem;
         padding: 0.2rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
         @media (max-width: 800px) {
             display: flex;
             flex-direction: column;
@@ -82,10 +93,16 @@ export const PropertyData = () => {
         padding: 0.2rem;
         `;
 
+    const styledButton = css`
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        `;
     return (
-        <div >
+        <div css={stylesdiv}>
             {loading === true ? "Loading..." : 
-            (error ? <p>{error}</p> : <div css={stylesdiv}>
+            (error ? <p>{error}</p> : <div  >
             {/* info part */}
             <div >
                 <Slider photos={photos}/>
@@ -94,9 +111,9 @@ export const PropertyData = () => {
                         <p css={css`${montW400S24}`}> {address}</p>
                     </div>
                     <div css={css`${contRowCenter};`}>
-                            <MonetizationOnOutlinedIcon />
-                            <p css={css`${montW400S24}`}>{price}</p>
-                        </div>
+                        <MonetizationOnOutlinedIcon />
+                        <p css={css`${montW400S24}`}>{price}</p>
+                    </div>
                 </div>
                 {/* <div css={css`${contRowBetween}`} >
                     <p css={css`${montW400S15}`}> {direction2}</p>
@@ -104,20 +121,34 @@ export const PropertyData = () => {
                 </div> */}
                 <DataContainer bedrooms={bedrooms} bathrooms={bathrooms} area={area} pets={pets} />
                 <div css={css`${contStart}`}>{about}</div>
-                <div css={css`${contStart}`}>{about}</div>
-                <div css={css`${contStart}`}>Location</div>
                 <div css={css`${contStart}`}>{address}</div>
+                <div css={css`${contStart}`}>{property_type}</div>
+                <div css={css`${contStart}`}>{operation}</div>
+                <div css={css`${contStart}`}>{operation === "rent" ? "+" + maintenance : ""}</div>
             </div>
             {/* contact advertiser */}
-            <div>
-                <div css={css`${contactCard}`}>
-                        <button css={css`${sendButton}`}>CONTACT ADVERTISER</button>
-                        <FavoriteBorderOutlinedIcon fontSize="large"/>
-                        <p> Add to favorites</p>
-                </div>
-            </div>
+            <div css={stylesdiv}>
+            { user?.user_type === "homeseeker" ?
+                (
+                    <div css={css`${contactCard}`}>
+                        <button css={css`${sendButton}`}  >
+                            CONTACT ADVERTISER
+                        </button>
+                        <button css={styledButton}>
+                            <FavoriteBorderOutlinedIcon fontSize="large"/>
+                            <p>Add to favorites</p>
+                        </button>     
+                    </div>
+                ) : 
+                (
+                    <div css={css`${contactCard}`}>
+                        Join as homeseeker to contact the advertiser    
+                    </div>
+                )
+            }
             <div>
                 <Map address={null}/>
+            </div>
             </div>
             </div>)}
         </div>

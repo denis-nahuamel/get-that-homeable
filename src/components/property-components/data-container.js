@@ -26,8 +26,7 @@ const DataContainer = (data) =>{
                     <p>{area} m2</p>
                 </div>
                 <div css={css`${contRowCenter}`}>
-                    <PetsOutlinedIcon color="gray"/>
-                    {bedrooms==="si"?<p>pets allowed</p>: <p>not allowed</p>}
+                    {pets===true?<PetsOutlinedIcon color="gray"/>: ""}
                 </div>
              </ThemeProvider> 
         </div>
