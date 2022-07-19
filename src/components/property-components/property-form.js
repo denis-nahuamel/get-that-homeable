@@ -29,7 +29,8 @@ function PropertyForm() {
     const [rentSale, setRentSale] = useState('rent');
 
     const [photos, setPhotos] = useState(null);
-	const [error, setError] = useState(false)
+	const [error, setError] = useState(false);
+    const [location, setLocation] = useState({lat: null, long: null})
     const handleRentSale= (_event,value)=>{
         setRentSale(value)
         console.log("renst", value)
@@ -60,6 +61,9 @@ function PropertyForm() {
         apartment: false, 
         house: false
     });
+    const handleLocation = (location) => {
+        setLocation(location)
+    }
 
     function handleChecked(event, property_type)  {
         if (property_type === "apartment") {
@@ -92,6 +96,8 @@ function PropertyForm() {
             bathrooms:parseInt(values.bathrooms.value),
             area: parseFloat(values.area.value),
             about: values.about.value,//
+            lat: location.lat,
+            long: location.long
 
         }
         const formData = new FormData()
@@ -104,6 +110,9 @@ function PropertyForm() {
 		formData.append("property[area]", params.area)
 		formData.append("property[bedrooms]", params.bedrooms)
 		formData.append("property[bathrooms]", params.bathrooms)
+		formData.append("property[bathrooms]", params.bathrooms)
+		formData.append("property[latitude]", params.lat)
+		formData.append("property[longitude]", params.long)
 
         console.log(params)
         setError(false)
@@ -155,7 +164,7 @@ function PropertyForm() {
                         </ToggleButtonGroup>
                     </ThemeProvider>
                 </div>
-                <SearchLocationInput onChange={() => null} />
+                <SearchLocationInput onChange={() => null} onLocation={handleLocation}/>
                 {/* <InputComponent labelText={"ADDRESS"} 
                         idInput={"address"} 
                         placeholder={"start typing to autocomplete"} width={"600px"}/> */}

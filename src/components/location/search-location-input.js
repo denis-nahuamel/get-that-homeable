@@ -24,32 +24,37 @@ const loadScript = (url, callback) => {
   document.getElementsByTagName("head")[0].appendChild(script);
 };
 
-function handleScriptLoad(updateQuery, autoCompleteRef) {
+function handleScriptLoad(updateQuery, autoCompleteRef, onLocation) {
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
     // { types: ["(cities)"] }
   );
-  autoComplete.setFields(["address_components", "formatted_address"]);
+  autoComplete.setFields(["address_components", "formatted_address", "geometry"]);
   autoComplete.addListener("place_changed", () =>
-    handlePlaceSelect(updateQuery)
+    handlePlaceSelect(updateQuery, onLocation)
   );
 }
 
-async function handlePlaceSelect(updateQuery) {
+async function handlePlaceSelect(updateQuery, onLocation) {
   const addressObject = autoComplete.getPlace();
+  console.log("adsf", addressObject.geometry.location.lat())
+  onLocation({
+    lat: addressObject.geometry.location.lat(),
+    long: addressObject.geometry.location.lng()
+  })
   const query = addressObject.formatted_address;
   updateQuery(query);
   console.log(addressObject)
 }
 
-function SearchLocationInput() {
+function SearchLocationInput({onLocation}) {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=AIzaSyAOnJfG7WLaEiGitMAAINtWpMUT04tHE5o&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
+      () => handleScriptLoad(setQuery, autoCompleteRef, onLocation)
     );
     // loadScript(
     //    https://maps.googleapis.com/maps/api/js?key=AIzaSyAOnJfG7WLaEiGitMAAINtWpMUT04tHE5o&libraries=places&callback=initMap

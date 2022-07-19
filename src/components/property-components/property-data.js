@@ -149,7 +149,7 @@ export const PropertyData = () => {
                 )
             }
             <div>
-                <Map address={address}/>
+                <Map address={address} latitude={latitude} longitude={longitude}/>
             </div>
             </div>
             </div>)}
