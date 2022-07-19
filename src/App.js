@@ -16,8 +16,13 @@ import HomeseekerPropertiesPage from './pages/homeseeker-properties-page';
 import Footer from './components/footer';
 import { Route, Routes } from 'react-router-dom';
 import SignUpPage from './pages/sign-up-page';
+// import {useAuth} from './context/auth-context';
+// import {useSave} from './context/save-context';
 
 function App() {
+  // const { user } = useAuth();
+  // const {savedProperties} = useSave()
+
   return (
     <div className="App">
      

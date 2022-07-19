@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom"
 import { getProperty, saveProperty } from "../../services/property-service";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
+// import { useSave } from "../../context/save-context";
 
 import Map from '../../components/location/map' // import the map here
 
@@ -25,15 +26,18 @@ export const PropertyData = () => {
         error: null
       });
     const { loading, data: property, error } = state;
-
+    const [isFavorite, setIsfavorite] = useState(false)
     let {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
     const {user} = useAuth();
-    console.log(user)
+
+    // const {savedProperties, savePropertyContext} = useSave()
+    // console.log(savedProperties)
     let params = useParams()
     let idParam = params["*"]
     const location = useLocation();
+    
     useEffect(()=> {
-        
+        console.log(user)
         if (location.state !== null) {
             setState({
                 loading: false,
@@ -56,7 +60,8 @@ export const PropertyData = () => {
                 })
             })
         }   
-        }, [])
+    }, [])
+
     
     function handleContact(event, id) {
         
@@ -158,6 +163,7 @@ export const PropertyData = () => {
             <div>
                 <Map address={address}/>
             </div>
+            {isFavorite? "it's favorite" : "it's not favorite"}
             </div>
             </div>)}
         </div>

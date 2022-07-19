@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
+// import { useSave } from "../context/save-context";
 import { backgroundLogin, inputForm, sendButton, signUpContainer } from "../styles/form";
 import { montW400S12, montW400S15, montW400S24, sans14W600Gray } from "../styles/typography";
 import { contColumn, contColumnM16, contColumnM16Start } from "../styles/utils";
@@ -10,8 +11,13 @@ import { contColumn, contColumnM16, contColumnM16Start } from "../styles/utils";
 const LoginForm = () => {
   const navigate = useNavigate();
   const {loginAuth} = useAuth();
+  // const {getPropertyContext} = useSave()
+
   const handleLogin = (values) => {
-    loginAuth(values).then((response)=> {navigate("/")})
+    loginAuth(values).then((response)=> {
+      // getPropertyContext()
+      navigate("/")
+    })
   }
   return (
     <Formik
