@@ -15,7 +15,7 @@ const SecondSection = () => {
     },[])
     return (
         <>
-        <div>Find an Apartment you Love</div>
+        <div css={css`height: 35px;`}>Find an Apartment you Love</div>
         <div css={titleSecondSection}>Homes for rent at the best prices</div>
         <div css={css`${contRowCenterCenter}`}>
             <ListProperties properties = {properties} />

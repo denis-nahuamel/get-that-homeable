@@ -16,6 +16,12 @@ export const mainText = css`
 export const mainSearch = css`
     ${card};
     ${contRow}
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 8px;
 `
 export const titleSecondSection = css`
     ${montW400S36};

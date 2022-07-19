@@ -9,7 +9,7 @@ const stylesdiv = css`
     align-items: center;
     justify-content: center;
     margin: 3rem;
-    padding: 1rem;
+    padding: 0.1rem;
     gap: 2rem;
 `;
 const ListProperties = ({properties}) =>  {
