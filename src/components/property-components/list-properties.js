@@ -13,6 +13,7 @@ const stylesdiv = css`
     gap: 2rem;
 `;
 const ListProperties = ({properties}) =>  {
+    
     return (
         <div css={stylesdiv}>
             {properties.length===0?null:
