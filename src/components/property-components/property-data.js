@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom"
 import { getProperty, saveProperty } from "../../services/property-service";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
-// import { useSave } from "../../context/save-context";
+import { useSave } from "../../context/save-context";
 
 import Map from '../../components/location/map' // import the map here
 
@@ -29,8 +29,9 @@ export const PropertyData = () => {
     const [isFavorite, setIsfavorite] = useState(false)
     let {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
     const {user} = useAuth();
+    const [properties, setProperties] = useState(null)
 
-    // const {savedProperties, savePropertyContext} = useSave()
+    const {savedProperties, savePropertyContext, getPropertyContext} = useSave()
     // console.log(savedProperties)
     let params = useParams()
     let idParam = params["*"]
@@ -60,20 +61,26 @@ export const PropertyData = () => {
                 })
             })
         }   
-    }, [])
+        if (savedProperties === null) {
+            getPropertyContext()            
+        } 
+        setProperties(savedProperties?.map(item=>item.property))
+
+    }, [savedProperties])
 
     
     function handleContact(event, id) {
         
     }
     function handleFavorite(event, id) {
-        const body = {
-            contacted: false,
-            favorite: true,
-            property_id: id
-        }
-        console.log(body)
-        saveProperty(body).then(console.log)
+        // const body = {
+        //     contacted: false,
+        //     favorite: true,
+        //     property_id: id
+        // }
+        // console.log(body)
+        // saveProperty(body).then(console.log)
+        console.log(properties)
     }
     const stylesdiv = css`
         display: flex;

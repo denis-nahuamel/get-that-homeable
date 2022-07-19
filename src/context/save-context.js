@@ -4,18 +4,17 @@ import { getSavedProperties, saveProperty } from "../services/property-service";
 const SaveContext = createContext();
 export const SaveProvider = (props) => {
     const [savedProperties, setSavedProperties] = useState(null);
-    useEffect(() => {
-        getSavedProperties()
-        .then((response)=> {
-            // console.log(response)
-            setSavedProperties(response)
-    })
-    .catch((e)=> {
-        ; console.log(e)})
-    }, [])
+    // useEffect(() => {
+    //     getSavedProperties()
+    //     .then((response)=> {
+    //         setSavedProperties(response)
+    // })
+    // .catch((e)=> {
+    //     ; console.log(e)})
+    // }, [])
     const getPropertyContext = (body) => {
         return getSavedProperties().then((response)=> {
-            // console.log(response)
+            console.log(response)
             setSavedProperties(response)
         })}
     const savePropertyContext = (body) => {

@@ -10,27 +10,27 @@ import { getSavedProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
 import { useAuth } from "../context/auth-context";
-// import { useSave } from "../context/save-context";
+import { useSave } from "../context/save-context";
 
 const HomeseekerPropertiesPage = ()=> {
     const {user} = useAuth();
     const [properties, setProperties] = useState(null)
+    const {savedProperties, getPropertyContext} = useSave();
 
-    useEffect(()=>{
-        getSavedProperties().then(response => {           
-            setProperties(response.map(item=>item.property))
-        })
-        // console.log(savedProperties)
-
-    },[])
     // useEffect(()=>{
-    //     if (savedProperties !== null) {
-    //         setProperties(savedProperties.map(item=>item.property))
-    //     } 
-    //     console.log(user)
+    //     getSavedProperties().then(response => {           
+    //         setProperties(response.map(item=>item.property))
+    //     })
+    //     // console.log(savedProperties)
 
-    //     console.log(savedProperties)
-    // },[savedProperties, user])
+    // },[])
+    useEffect(()=>{
+        if (savedProperties === null) {
+            getPropertyContext()            
+        } 
+        setProperties(savedProperties?.map(item=>item.property))
+
+    },[savedProperties])
    
     return (
         <>
