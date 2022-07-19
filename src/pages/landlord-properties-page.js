@@ -17,14 +17,14 @@ const LandlordPropertiesPage = ()=> {
     const [properties, setProperties] = useState([])
 
     useEffect(()=>{
-      getListedProperties().then(response => {           
+        getListedProperties().then(response => {           
             setProperties(response)
         })
     },[])
    
     return (
         <>
-        {user.user_type === "landlord" ? (
+        {user?.user_type === "landlord" ? (
             <ListProperties properties = {properties} />
         ) : "You must be logged as a landlord in order to list properties"}
         </>)

@@ -12,11 +12,17 @@ import  PropertyCard  from './components/property-components/property-card';
 import PropertyForm from './components/property-components/property-form';
 import PropertiesPage from './pages/properties-page';
 import LandlordPropertiesPage from './pages/landlord-properties-page';
+import HomeseekerPropertiesPage from './pages/homeseeker-properties-page';
 import Footer from './components/footer';
 import { Route, Routes } from 'react-router-dom';
 import SignUpPage from './pages/sign-up-page';
+// import {useAuth} from './context/auth-context';
+// import {useSave} from './context/save-context';
 
 function App() {
+  // const { user } = useAuth();
+  // const {savedProperties} = useSave()
+
   return (
     <div className="App">
      
@@ -47,6 +53,7 @@ function App() {
               {/* <Route path=":id" element={<PropertyData />} /> */}
             <Route path = "list-properties/*" element={<PropertyData />} />
             <Route path = "my-listed-properties" element={<LandlordPropertiesPage />} />
+            <Route path = "my-saved-properties" element={<HomeseekerPropertiesPage />} />
 
           </Route>
 

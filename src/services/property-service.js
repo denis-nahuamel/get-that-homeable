@@ -46,9 +46,25 @@ export const getAddresses = ({ address }) => {
 }
 
 export const getListedProperties = (id) => {
-    const endpoint = `/listed_properties?`
+    const endpoint = `/listed_properties`
 
     return apiFetch(endpoint).then(response => {
+        return response
+    })
+}
+
+export const getSavedProperties = (id) => {
+    const endpoint = `/saveds`
+
+    return apiFetch(endpoint).then(response => {
+        return response
+    })
+}
+
+export const saveProperty = (body) => {
+    const endpoint = `/saveds`
+
+    return apiFetch(endpoint, {body: body}).then(response => {
         return response
     })
 }

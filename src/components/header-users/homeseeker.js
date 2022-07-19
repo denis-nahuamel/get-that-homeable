@@ -5,11 +5,13 @@ import { contRowAround } from "../../styles/utils";
 import {useNavigate} from "react-router-dom";
 import addpeople from "../../images/AddPeople.png";
 const HomeSeeker = () => {
+    const navigate = useNavigate();
+
     const handleLogout = () => {
 
     }
     const handleSavedProperties = () => {
-
+        navigate("/my-saved-properties")
     }
     const handleProfile = () => {
 
