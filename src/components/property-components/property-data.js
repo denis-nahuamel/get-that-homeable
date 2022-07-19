@@ -26,19 +26,19 @@ export const PropertyData = () => {
         error: null
       });
     const { loading, data: property, error } = state;
-    const [isFavorite, setIsfavorite] = useState(false)
-    let {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
+    const {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about, latitude, longitude, maintenance } = property;
     const {user} = useAuth();
     const [properties, setProperties] = useState(null)
 
     const {savedProperties, savePropertyContext, getPropertyContext} = useSave()
+    const [isFavorite, setIsfavorite] = useState(false)
+
     // console.log(savedProperties)
     let params = useParams()
     let idParam = params["*"]
     const location = useLocation();
     
     useEffect(()=> {
-        console.log(user)
         if (location.state !== null) {
             setState({
                 loading: false,
@@ -61,12 +61,20 @@ export const PropertyData = () => {
                 })
             })
         }   
-        if (savedProperties === null) {
-            getPropertyContext()            
+        if (user?.user_type === "homeseeker") {
+            if (savedProperties === null) {
+                getPropertyContext()            
+            } 
+            setProperties(savedProperties?.map(item=>item.property))
+            
+            let foo = savedProperties?.filter(item=>item.property.id===property.id)
+            if (foo?.length>0) {
+                if (foo[0].favorite === true) {
+                    setIsfavorite(true)
+                }
+            }        
         } 
-        setProperties(savedProperties?.map(item=>item.property))
-
-    }, [savedProperties])
+    }, [savedProperties, property])
 
     
     function handleContact(event, id) {
@@ -170,7 +178,7 @@ export const PropertyData = () => {
             <div>
                 <Map address={address} latitude={latitude} longitude={longitude}/>
             </div>
-            {isFavorite? "it's favorite" : "it's not favorite"}
+            {isFavorite === true ? "fav" : "not fav"}
             </div>
             </div>)}
         </div>

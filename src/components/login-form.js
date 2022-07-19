@@ -10,17 +10,15 @@ import { contColumn, contColumnM16, contColumnM16Start } from "../styles/utils";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const {loginAuth} = useAuth();
+  const {userType, loginAuth} = useAuth();
   const {getPropertyContext} = useSave()
 
   const handleLogin = (values) => {
     loginAuth(values).then((response)=> {
-      getPropertyContext().then(response=>{
-        navigate("/")
-
+      if (userType === "homeseeker") {
+        getPropertyContext()
       }
-        )
-      // navigate("/")
+      navigate("/")
     })
   }
   return (

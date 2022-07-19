@@ -9,9 +9,11 @@ import PropertyCard from "../components/property-components/property-card";
 import { getProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
+import { useAuth } from "../context/auth-context";
 
 const PropertiesPage = ()=> {
-    
+    const {user} = useAuth();
+
     const [properties, setProperties] = useState([])
     const [pagination, setPagination] = useState({})
     const [filterParams, setFilterParams] = useState({ 
@@ -35,6 +37,7 @@ const PropertiesPage = ()=> {
             setProperties(response.properties)
             setPagination(response.pagination)
         })
+
     },[filterParams])
     const handleFilterParams = (filters) => {
             setFilterParams(filters)
