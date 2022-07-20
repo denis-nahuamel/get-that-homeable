@@ -10,6 +10,7 @@ import { getListedProperties } from "../services/property-service";
 import { listProperties } from "../styles/property-data";
 import { contRow } from "../styles/utils";
 import { useAuth } from "../context/auth-context";
+import ListSavedProperties from "../components/property-components/list-saved-properties";
 
 const LandlordPropertiesPage = ()=> {
     const {user} = useAuth();
@@ -25,7 +26,7 @@ const LandlordPropertiesPage = ()=> {
     return (
         <>
         {user?.user_type === "landlord" ? (
-            <ListProperties properties = {properties} />
+            <ListSavedProperties properties = {properties} />
         ) : "You must be logged as a landlord in order to list properties"}
         </>)
 }
