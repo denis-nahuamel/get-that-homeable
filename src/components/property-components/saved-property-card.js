@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, ThemeProvider } from "@emotion/react";
 import slide from "../../images/slide1.png"
-import { iconsGap, imageCard, propertyCard } from "../../styles/property-data";
+import { iconsGap, imageCard, propertyCard, savedPropertyCard } from "../../styles/property-data";
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import { montW400S24 } from "../../styles/typography";
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
@@ -13,6 +13,8 @@ import DataContainer from "./data-container";
 import { theme } from "../themes";
 import areaImg from "../../images/icons/bx-area.png"
 import { generatePath, useNavigate } from "react-router-dom";
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 export const SavedPropertyCard = ({property}) => {
     // console.log(property)
     const navigate = useNavigate();
@@ -64,7 +66,16 @@ export const SavedPropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
-
+            <div css={savedPropertyCard}>
+                <div css={css`${contRow} ; gap:10px;`}>
+                    <DriveFileRenameOutlineOutlinedIcon />
+                    EDIT
+                </div>
+                <div css={css`${contRow}; gap:10px;`}> 
+                <CancelOutlinedIcon />
+                    CLOSE
+                </div>
+            </div>
         </div>
     )
 }

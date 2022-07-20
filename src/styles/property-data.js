@@ -1,6 +1,8 @@
+/** @jsxImportSource @emotion/react */
+import { css, ThemeProvider } from "@emotion/react";
 import { pinkButton } from "./form";
 import { card, cardWthPadding } from "./select-profile";
-import { contRow, contRowCenter, contRowSpaceAround } from "./utils";
+import { contRow, contRowCenter, contRowSpaceAround, line } from "./utils";
 
 export const contactCard = `
     ${card};
@@ -50,4 +52,29 @@ export const filterOptions = `
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 
     bottom: -10%;
+`
+export const savedPropertyCard = css`
+    ${contRowSpaceAround};
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+    background-color: #BF5F82;
+`
+/**landlord properties page */
+export const contActiveClosed = css`
+    ${contRow};
+    margin: 32px;
+    color: #373737;
+    gap: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+`
+export const lineActiveClosed = css`
+    ${line};
+    margin-top: 6px;
+
 `

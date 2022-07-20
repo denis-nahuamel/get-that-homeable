@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css, ThemeProvider } from "@emotion/react";
 import slide from "../../images/slide1.png"
-import { iconsGap, imageCard, propertyCard } from "../../styles/property-data";
+import { iconsGap, imageCard, propertyCard, savedPropertyCard } from "../../styles/property-data";
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import { montW400S24 } from "../../styles/typography";
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
@@ -13,9 +13,14 @@ import DataContainer from "./data-container";
 import { theme } from "../themes";
 import areaImg from "../../images/icons/bx-area.png"
 import { generatePath, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
+
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 export const PropertyCard = ({property}) => {
     // console.log(property)
     const navigate = useNavigate();
+    const {user} = useAuth();
 
     const {price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
 
@@ -24,10 +29,16 @@ export const PropertyCard = ({property}) => {
         navigate(`/list-properties/${property.id}`, {state:{propertyData:property}})
         // navigate("property-data",{state:{propertyData:property}})
     }
+    const handleEditProperty = () => {
+
+    }
+    const handleCloseProperty = () => {
+        console.log("property closed")
+    }
     return (
-        <div css={css`${propertyCard}`} onClick={handlePropertyData}>
+        <div css={css`${propertyCard}`} >
             <div>
-                <img src={slide} css={css`${imageCard}`} alt="images"/>
+                <img src={slide} css={css`${imageCard}`} alt="images" onClick={handlePropertyData}/>
                 <div>for free</div>
             </div>
             <div css={css`${contRowBetween}; margin: 0 5px;`}>
@@ -64,7 +75,16 @@ export const PropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
-
+            {user?.user_type === "landlord"?<div css={savedPropertyCard}>
+                <div css={css`${contRow} ; gap:10px;`} onClick={handleEditProperty}>
+                    <DriveFileRenameOutlineOutlinedIcon />
+                    <div>EDIT</div>
+                </div>
+                <div css={css`${contRow}; gap:10px;`} onClick={handleCloseProperty}> 
+                    <CancelOutlinedIcon />
+                   <div> CLOSE</div>
+                </div>
+            </div>:null}
         </div>
     )
 }
