@@ -12,15 +12,20 @@ export const SaveProvider = (props) => {
     // .catch((e)=> {
     //     ; console.log(e)})
     // }, [])
-    const getPropertyContext = (body) => {
+    const getPropertyContext = () => {
         return getSavedProperties().then((response)=> {
             console.log(response)
             setSavedProperties(response)
         })}
     const savePropertyContext = (body) => {
+        let temp = [...savedProperties]
         return saveProperty(body).then(response => {
-            setSavedProperties(savedProperties.push(response))
+            let temp = null
+            savedProperties ? temp = savedProperties : temp = []
             console.log(savedProperties)
+            setSavedProperties(prev=>[...prev, response])
+            // console.log("TEMP PRINT" + temp)
+            // console.log(savedProperties)
         })}
     
     const value = {
