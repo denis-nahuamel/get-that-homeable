@@ -33,19 +33,15 @@ function Map({address, latitude, longitude}) {
 
   
   return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyAOnJfG7WLaEiGitMAAINtWpMUT04tHE5o"
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      // center={coordinates}
+      zoom={20}
+      center={coordinates}
     >
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        // center={coordinates}
-        zoom={20}
-        center={coordinates}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
-    </LoadScript>
+      { /* Child components, such as markers, info windows, etc. */ }
+      <></>
+    </GoogleMap>
   )
 }
 

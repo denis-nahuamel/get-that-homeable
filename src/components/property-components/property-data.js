@@ -31,9 +31,11 @@ export const PropertyData = () => {
         latitude, longitude, maintenance, landlord,
      } = property;
     const {user} = useAuth();
+    const {savedProperties, savePropertyContext, getPropertyContext} = useSave()
+    console.log(savedProperties)
+
     const [properties, setProperties] = useState(null)
     console.log(property)
-    const {savedProperties, savePropertyContext, getPropertyContext} = useSave()
     const [isFavorite, setIsfavorite] = useState(false)
     const [isContacted, setIsContacted] = useState(false)
 
@@ -43,6 +45,9 @@ export const PropertyData = () => {
     const location = useLocation();
     
     useEffect(()=> {
+        console.log("effect")
+        console.log(savedProperties)
+
         if (location.state !== null) {
             setState({
                 loading: false,
@@ -68,8 +73,14 @@ export const PropertyData = () => {
         if (user?.user_type === "homeseeker") {
             if (savedProperties === null) {
                 getPropertyContext()            
-            } 
-            setProperties(savedProperties?.map(item=>item.property))
+            } else if (Number.isInteger(savedProperties)) {
+                console.log("number")
+                getPropertyContext()            
+            }
+            // getPropertyContext()            
+            console.log(savedProperties)
+            let temp = savedProperties?.map(item=>item.property)
+            setProperties(temp)
             
             let foo = savedProperties?.filter(item=>item.property.id===property.id)
             if (foo?.length>0) {
@@ -80,6 +91,7 @@ export const PropertyData = () => {
                 }
             }        
         } 
+        
     }, [savedProperties, property])
 
     
@@ -87,14 +99,13 @@ export const PropertyData = () => {
         
     }
     function handleFavorite(event, id) {
-        // const body = {
-        //     contacted: false,
-        //     favorite: true,
-        //     property_id: id
-        // }
-        // console.log(body)
-        // saveProperty(body).then(console.log)
-        console.log(properties)
+        const body = {
+            contacted: false,
+            favorite: true,
+            property_id: id
+        }
+        savePropertyContext(body)
+        // getPropertyContext()
     }
     const stylesdiv = css`
         display: flex;
