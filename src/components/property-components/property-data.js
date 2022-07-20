@@ -20,6 +20,9 @@ import Map from '../../components/location/map' // import the map here
 
 
 export const PropertyData = () => {
+    const {user} = useAuth();
+    const {savedProperties, savePropertyContext, getPropertyContext, updatePropertyContext} = useSave()
+
     const [state, setState] = useState({
         loading: true,
         data: {},
@@ -30,8 +33,6 @@ export const PropertyData = () => {
         address, bedrooms, bathrooms, area, pets, about, 
         latitude, longitude, maintenance, landlord,
      } = property;
-    const {user} = useAuth();
-    const {savedProperties, savePropertyContext, getPropertyContext} = useSave()
     console.log(savedProperties)
 
     const [properties, setProperties] = useState(null)
@@ -86,26 +87,50 @@ export const PropertyData = () => {
             if (foo?.length>0) {
                 if (foo[0].favorite === true) {
                     setIsfavorite(true)
-                } else if (foo[0].contacted === true) {
+                } 
+                if (foo[0].contacted === true) {
                     setIsContacted(true)
                 }
             }        
         } 
         
-    }, [savedProperties, property])
+    }, [user, savedProperties, property, isContacted, isFavorite])
 
-    
+    function getSavedPropertyId(id) {
+        let foo = savedProperties?.filter(item=>item.property.id===id)
+        return foo[0]?.id
+    }
     function handleContact(event, id) {
-        
+        const savedId = getSavedPropertyId(id)
+        if (!isContacted && !isFavorite) {
+            console.log("one")      
+            const body = {
+                contacted: true,
+                property_id: id
+            }
+            savePropertyContext(body)
+        } else if (!isContacted) {
+            console.log("two")   
+            const body = {
+                contacted: true,
+            }     
+            updatePropertyContext(body, savedId)
+        }
     }
     function handleFavorite(event, id) {
-        const body = {
-            contacted: false,
-            favorite: true,
-            property_id: id
+        const savedId = getSavedPropertyId(id)
+        if (!isContacted && !isFavorite) {
+            const body = {
+                favorite: true,
+                property_id: id
+            }
+            savePropertyContext(body)
+        } else if (!isFavorite) {         
+            const body = {
+                favorite: true,
+            }
+            updatePropertyContext(body, savedId)
         }
-        savePropertyContext(body)
-        // getPropertyContext()
     }
     const stylesdiv = css`
         display: flex;

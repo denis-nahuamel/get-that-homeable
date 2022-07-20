@@ -38,7 +38,7 @@ const PropertiesPage = ()=> {
             setPagination(response.pagination)
         })
 
-    },[filterParams])
+    },[user, filterParams])
     const handleFilterParams = (filters) => {
             setFilterParams(filters)
     }

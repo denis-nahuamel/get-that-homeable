@@ -30,7 +30,7 @@ const HomeseekerPropertiesPage = ()=> {
         } 
         setProperties(savedProperties?.map(item=>item.property))
 
-    },[savedProperties])
+    },[user, savedProperties])
    
     return (
         <>

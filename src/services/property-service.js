@@ -68,3 +68,11 @@ export const saveProperty = (body) => {
         return response
     })
 }
+
+export const updateProperty = (body, id) => {
+    const endpoint = `/saveds/${id}`
+
+    return apiFetch(endpoint, {body: body, method: "PUT"}).then(response => {
+        return response
+    })
+}

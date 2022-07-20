@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getSavedProperties, saveProperty } from "../services/property-service";
+import { getSavedProperties, saveProperty, updateProperty } from "../services/property-service";
 
 const SaveContext = createContext();
 export const SaveProvider = (props) => {
@@ -18,20 +18,22 @@ export const SaveProvider = (props) => {
             setSavedProperties(response)
         })}
     const savePropertyContext = (body) => {
-        let temp = [...savedProperties]
         return saveProperty(body).then(response => {
-            let temp = null
-            savedProperties ? temp = savedProperties : temp = []
-            console.log(savedProperties)
             setSavedProperties(prev=>[...prev, response])
-            // console.log("TEMP PRINT" + temp)
-            // console.log(savedProperties)
         })}
-    
+    const updatePropertyContext = (body, id) => {
+        let temp = [...savedProperties]
+        temp = temp.filter(item => item.id !== id)
+        return updateProperty(body, id).then(response => {
+            console.log(response)
+            setSavedProperties([...temp, response])
+        })}
+
     const value = {
         savedProperties,
         getPropertyContext,
-        savePropertyContext
+        savePropertyContext,
+        updatePropertyContext
     }
     return <SaveContext.Provider value={value}  {...props} />
 }
