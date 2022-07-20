@@ -13,14 +13,11 @@ import DataContainer from "./data-container";
 import { theme } from "../themes";
 import areaImg from "../../images/icons/bx-area.png"
 import { generatePath, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-export const PropertyCard = ({property}) => {
+export const SavedPropertyCard = ({property}) => {
     // console.log(property)
     const navigate = useNavigate();
-    const {user} = useAuth();
 
     const {price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
 
@@ -29,17 +26,11 @@ export const PropertyCard = ({property}) => {
         navigate(`/list-properties/${property.id}`, {state:{propertyData:property}})
         // navigate("property-data",{state:{propertyData:property}})
     }
-    const handleEditProperty = () => {
-
-    }
-    const handleCloseProperty = () => {
-        console.log("property closed")
-    }
     return (
-        <div css={css`${propertyCard}`} >
+        <div css={css`${propertyCard}`} onClick={handlePropertyData}>
             <div>
-                <img src={slide} css={css`${imageCard}`} alt="images" onClick={handlePropertyData}/>
-                <div>for free</div>
+                <img src={slide} css={css`${imageCard}`} alt="images"/>
+                <div>for sale</div>
             </div>
             <div css={css`${contRowBetween}; margin: 0 5px;`}>
                 <div css={css`display:flex; `}>
@@ -75,17 +66,17 @@ export const PropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
-            {user?.user_type === "landlord"?<div css={savedPropertyCard}>
-                <div css={css`${contRow} ; gap:10px;`} onClick={handleEditProperty}>
+            <div css={savedPropertyCard}>
+                <div css={css`${contRow} ; gap:10px;`}>
                     <DriveFileRenameOutlineOutlinedIcon />
-                    <div>EDIT</div>
+                    EDIT
                 </div>
-                <div css={css`${contRow}; gap:10px;`} onClick={handleCloseProperty}> 
-                    <CancelOutlinedIcon />
-                   <div> CLOSE</div>
+                <div css={css`${contRow}; gap:10px;`}> 
+                <CancelOutlinedIcon />
+                    CLOSE
                 </div>
-            </div>:null}
+            </div>
         </div>
     )
 }
-export default PropertyCard;
+export default SavedPropertyCard;
