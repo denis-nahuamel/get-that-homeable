@@ -46,7 +46,6 @@ const HomeseekerPropertiesPage = ()=> {
         background: none;
         color: inherit;
         border: none;
-        disabled: true;
         padding: 0;
         font: inherit;
         cursor: pointer;

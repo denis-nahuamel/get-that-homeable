@@ -7,13 +7,21 @@ import ReturnContent from "./options-content";
 
 import MultipleSelect from "./multi-select";
 const FilterProperties = ({onFilterParams}) => {
+    const styledDiv = css`
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+        gap: 1rem;
+    `;
     return (
-        <div css = {css`${filterButtons}`}>
+        <div css ={styledDiv}>
             {/* <div><input placeholder="Search by adress" type="text" /></div> */}
             {/* <ButtonFilter text="ADDRESS" value={"address"} onFilterParams={onFilterParams}/> */}
             <ReturnContent  type={"address"} onFilterParams={onFilterParams}/>
 
-            <div css = {css`${contRow8Gap}`}>
+            <div css = {styledDiv}>
                 {/* <ReturnContent  type={"address"} onFilterParams={onFilterParams}/> */}
                 {/* <ButtonFilter text="ADDRESS" value={"address"} onFilterParams={onFilterParams}/> */}
                 <ButtonFilter text="PRICE" value={"price"} onFilterParams={onFilterParams}/>

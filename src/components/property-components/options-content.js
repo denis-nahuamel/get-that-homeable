@@ -20,7 +20,8 @@ export function AddressContent({onFilterParams}) {
 
     const handleAddressPrice = (event) => {
         onFilterParams({
-            address: value
+            address: value,
+            page: 1
         })
         console.log(value)
     }
@@ -86,6 +87,7 @@ export const PriceContent = ({onFilterParams}) => {
         let values= event.target.elements;
         onFilterParams(filterParams => ({
             ...filterParams,
+            page: 1,
             min_price: values.min_price.value, 
             max_price: values.max_price.value, 
         }))
@@ -109,6 +111,7 @@ export const PetsAreaContent = ({onFilterParams}) => {
         let values= event.target.elements;
         onFilterParams(filterParams => ({
             ...filterParams,
+            page:1,
             pets: values.pets.checked, 
             min_area: values.min_area.value, 
             max_area: values.max_area.value, 
@@ -136,6 +139,7 @@ export const PropertyContent = ({onFilterParams}) => {
         let values= event.target.elements;
         onFilterParams(filterParams => ({
             ...filterParams,
+            page:1,
             property_type_apartment: values.apartment.checked===true?"apartment":null, 
             property_type_house: values.house.checked===true?"house":null
         }))
@@ -160,6 +164,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
         setBed(value)
         onFilterParams(filterParams => ({
             ...filterParams,
+            page:1,
             bedrooms: value 
         }))
     }
@@ -168,6 +173,7 @@ export const BedsBathsContent = ({onFilterParams}) => {
         setBath(value)
         onFilterParams(filterParams => ({
             ...filterParams,
+            page:1,
             bathrooms: value 
         }))
     }
