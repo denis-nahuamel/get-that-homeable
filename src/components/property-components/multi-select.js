@@ -35,6 +35,7 @@ export default function MultipleSelect({onFilterParams}) {
     
     onFilterParams(filterParams =>({
         ...filterParams,
+        page:1,
         operation_rent: value.length ===2?"rent":(value.length ===1 && value[0] ==="Renting")?"rent":null, 
         operation_sale: value.length ===2 ?"sale":(value.length ===1 && value[0] ==="Buying")?"sale":null 
     }))
