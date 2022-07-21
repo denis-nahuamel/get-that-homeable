@@ -4,11 +4,13 @@ import { join, pluspeople } from "../../styles/logo";
 import { contRowAround } from "../../styles/utils";
 import {useNavigate} from "react-router-dom";
 import addpeople from "../../images/AddPeople.png";
+import { useAuth } from "../../context/auth-context";
+
 const HomeSeeker = () => {
     const navigate = useNavigate();
-
+    const {logoutAuth} = useAuth();
     const handleLogout = () => {
-
+        logoutAuth().then(response => console.log(response))
     }
     const handleSavedProperties = () => {
         navigate("/my-saved-properties")
