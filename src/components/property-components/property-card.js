@@ -45,17 +45,17 @@ export const PropertyCard = ({property}) => {
                 <img src={photos.length !== 0 ? photos[0].url : slide} css={css`${imageCard}`} alt="images" onClick={handlePropertyData}/>
                 <div css={styledText}>For {operation[0].toUpperCase() + operation.slice(1)}</div>
             </div>
-            <div css={css`${contRowBetween}; margin: 0 5px;`}>
+            <div css={css`${contRowBetween}; margin: 1rem;`}>
                 <div css={css`display:flex; `}>
                         <MonetizationOnOutlinedIcon />
                         <div css={css`${montW400S24}`}>{price}</div>
                 </div>
                 <div css={css`${contRowCenter}`}>
-                    <ApartmentOutlinedIcon />
+                    <ApartmentOutlinedIcon css={css`margin-right: 0.3rem;`}/>
                     {property_type}
                 </div>
             </div>
-            <div css={css`text-justify:auto`}>
+            <div css={css`text-justify:auto; font-weight: 500; margin-left: 1rem; margin-right:1rem;`}>
                {address} 
             </div>
             <ThemeProvider theme={theme}>

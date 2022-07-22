@@ -76,6 +76,7 @@ export const contRowAround = `
 export const contRowSpaceAround = `
     ${contRow};
     justify-content: space-around;
+    margin: 0.5rem;
 `
 export const contRowAroundFullWidth = `
     ${contRowAround};

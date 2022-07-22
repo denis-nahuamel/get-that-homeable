@@ -108,6 +108,7 @@ export const montW400S24 = `
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
+    margin-left: 0.5rem;
     /* identical to box height, or 140% */
 
     letter-spacing: 0.15px;
