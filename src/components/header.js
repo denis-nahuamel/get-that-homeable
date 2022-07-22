@@ -10,20 +10,33 @@ import { useAuth } from "../context/auth-context";
 import Visitor from "./header-users/visitor";
 import Landlord from "./header-users/landlord";
 import HomeSeeker from "./header-users/homeseeker";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const navigate= useNavigate();
   const {user} = useAuth();
   console.log("user",user)
-  
+  const styledDiv = css`
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        margin: 1rem;
+        gap: 1rem;
+    `;
+  const styledLogo = css`
+    cursor: pointer;
+    `
   return (
-    <nav css={css`${Nav}`}>
-      <img css={css`${Logo}`}src={logo}alt=""/>
+    <nav css={styledDiv}>
+      <Link  to="/">
+        <img css={styledLogo}src={logo}alt=""/>
+      </Link>
+
+      {/* <img css={styledLogo}src={logo}alt=""/> */}
       <div css={css` display: flex; `} >
-        <div css={css` ${contRowAround}; display: flex; align-items: center; `} >
-          <img src={image} alt="take" />
-          <input css={css` ${Input} `} placeholder="FIND A HOME" />
-        </div>
+        {/* <div css={css` ${contRowAround}; display: flex; align-items: center; `} >
+        </div> */}
         {user===null?<Visitor />:(
           user.user_type==="landlord"?<Landlord />:<HomeSeeker />)}
       </div>
