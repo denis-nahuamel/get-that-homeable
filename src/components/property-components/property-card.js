@@ -17,23 +17,18 @@ import { useAuth } from "../../context/auth-context";
 
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import EditCloseProperty from "./edit-close-property";
 export const PropertyCard = ({property}) => {
     // console.log(property)
     const navigate = useNavigate();
     const {user} = useAuth();
 
-    const {price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
+    const {id, price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
 
     const handlePropertyData = (event) => {
         event.preventDefault();
         navigate(`/list-properties/${property.id}`, {state:{propertyData:property}})
         // navigate("property-data",{state:{propertyData:property}})
-    }
-    const handleEditProperty = () => {
-
-    }
-    const handleCloseProperty = () => {
-        console.log("property closed")
     }
     return (
         <div css={css`${propertyCard}`} >
@@ -75,16 +70,7 @@ export const PropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
-            {user?.user_type === "landlord"?<div css={savedPropertyCard}>
-                <div css={css`${contRow} ; gap:10px;`} onClick={handleEditProperty}>
-                    <DriveFileRenameOutlineOutlinedIcon />
-                    <div>EDIT</div>
-                </div>
-                <div css={css`${contRow}; gap:10px;`} onClick={handleCloseProperty}> 
-                    <CancelOutlinedIcon />
-                   <div> CLOSE</div>
-                </div>
-            </div>:null}
+            {user?.user_type === "landlord"?<EditCloseProperty id={id} />:null}
         </div>
     )
 }

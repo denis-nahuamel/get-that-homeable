@@ -52,7 +52,9 @@ export const getListedProperties = (id) => {
         return response
     })
 }
-
+export const editProperty = (body, id) => {
+    return apiFetch("/properties/"+id, {method:"PUT", body: body}).then((response)=>{ return response})
+}
 export const getSavedProperties = (id) => {
     const endpoint = `/saveds`
 
