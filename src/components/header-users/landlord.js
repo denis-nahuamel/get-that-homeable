@@ -13,6 +13,7 @@ const Landlord = ()=> {
     const {logoutAuth} = useAuth();
     const handleLogout = () => {
         logoutAuth().then(response => console.log(response))
+        navigate("/")
     }
     const handleListedProperties = () => {
         navigate("/my-listed-properties")

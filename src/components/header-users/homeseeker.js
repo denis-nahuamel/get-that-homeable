@@ -11,6 +11,7 @@ const HomeSeeker = () => {
     const {logoutAuth} = useAuth();
     const handleLogout = () => {
         logoutAuth().then(response => console.log(response))
+        navigate("/")
     }
     const handleSavedProperties = () => {
         navigate("/my-saved-properties")

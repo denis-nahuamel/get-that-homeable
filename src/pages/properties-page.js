@@ -122,14 +122,14 @@ const PropertiesPage = ()=> {
         setFilterParams({...filterParams, page: next})   
     }
     return (
-        <div css={styledDiv}>
+        <div >
             <FilterProperties onFilterParams= {handleFilterParams}>
                 {/* <ButtonFilter>
                     <ReturnContent onFilterParams= {handleFilterParams} params={filterParams} />
                 </ButtonFilter> */}
             </FilterProperties>
             <ListProperties properties = {properties} />
-            <div>
+            <div css={styledDiv}>
                 <button 
                     css={StyledButton} 
                     disabled={current === 1 ? true : false}

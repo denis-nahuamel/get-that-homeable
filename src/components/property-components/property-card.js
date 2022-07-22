@@ -23,18 +23,27 @@ export const PropertyCard = ({property}) => {
     const navigate = useNavigate();
     const {user} = useAuth();
 
-    const {id, price, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
+    const {id, price, operation, property_type, photos, address, bedrooms, bathrooms, area, pets, about }= property;
 
     const handlePropertyData = (event) => {
         event.preventDefault();
         navigate(`/list-properties/${property.id}`, {state:{propertyData:property}})
         // navigate("property-data",{state:{propertyData:property}})
     }
+    const styledText = css`
+        font-size: 1.1rem;
+        font-weight: 600;
+        background: palevioletred;
+        color: white;
+        padding: 0.4rem;
+        margin-bottom: 1rem; 
+        `;
+       
     return (
         <div css={css`${propertyCard}`} >
             <div>
-                <img src={slide} css={css`${imageCard}`} alt="images" onClick={handlePropertyData}/>
-                <div>for free</div>
+                <img src={photos.length !== 0 ? photos[0].url : slide} css={css`${imageCard}`} alt="images" onClick={handlePropertyData}/>
+                <div css={styledText}>For {operation[0].toUpperCase() + operation.slice(1)}</div>
             </div>
             <div css={css`${contRowBetween}; margin: 0 5px;`}>
                 <div css={css`display:flex; `}>

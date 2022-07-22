@@ -89,9 +89,11 @@ export const montW300S64 = `
     ${Montserrat};
     font-weight: 300;
     font-size: 64px;
-    line-height: 28px;
+    // line-height: 28px;
     letter-spacing: 0.15px;
     color: #373737;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 `
 export const montW400S48 = `
     ${Montserrat};
