@@ -79,7 +79,7 @@ export const PropertyCard = ({property}) => {
                     </div>
                 </div>
              </ThemeProvider> 
-            {user?.user_type === "landlord"?<EditCloseProperty id={id} />:null}
+            {user?.user_type === "landlord" && property.landlord.email === user.email?<EditCloseProperty id={id} />:null}
         </div>
     )
 }
